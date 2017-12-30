@@ -9,6 +9,7 @@ using namespace std;
 
 int key;
 bool is_game_loaded=false;
+bool camera_move=false;
 
 //0=player1    1=player2
 void print_player_info(Dice d1, string desc)
@@ -48,6 +49,10 @@ void next_round(Player ptab[])
     if(is_game_loaded==false)
     {
        is_game_loaded=true;
+    }
+    else if(camera_move==true)
+    {
+
     }
     else
     {
