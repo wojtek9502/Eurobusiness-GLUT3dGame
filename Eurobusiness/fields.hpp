@@ -36,7 +36,15 @@ public:
         this->prize=prize;
         this->owner=owner;
     }
+
 };
 
+vector<Field>generate_fields(vector<Field>& fields)
+{
+
+    fields.push_back(Field(1,"Start",75,3,99, 75,3,105,0,-1));
+    return fields;
+
+}
 
 #endif // FIELDS_HPP_INCLUDED

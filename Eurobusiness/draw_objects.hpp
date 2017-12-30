@@ -11,7 +11,7 @@ using namespace std;
 
 
 Player ptab[2]= { Player(1,"Player1",START_CASH,75.0, 3.0, 100.0,true),
-                  Player(2,"Player2",START_CASH,75.0, 3.0, 105.0,false)
+                  Player(2,"Player2",300,75.0, 3.0, 105.0,false)
                 };
 
 void draw_objects_on_scene()
