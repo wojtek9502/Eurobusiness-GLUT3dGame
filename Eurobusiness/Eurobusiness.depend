@@ -251,3 +251,41 @@
 	"Dice.hpp"
 	<iostream>
 
+1514637222 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\main.cpp
+	<stdlib.h>
+	<gl/gl.h>
+	<gl/glu.h>
+	<gl/glut.h>
+	"setup_scene.hpp"
+	"keyboard.h"
+	<string>
+	<vector>
+
+1514637950 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\setup_scene.hpp
+	"render_scene.hpp"
+
+1514639060 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\render_scene.hpp
+	"draw_objects.hpp"
+
+1514638172 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\draw_objects.hpp
+	<vector>
+	"Player.hpp"
+	"round.hpp"
+	<iostream>
+
+1514637519 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\player.hpp
+	<string>
+	<vector>
+
+1514638968 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\keyboard.h
+	<iostream>
+
+1514639029 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\round.hpp
+	"Dice.hpp"
+	<iostream>
+
+1514635536 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\dice.hpp
+	<ctime>
+	<ios>
+	<iostream>
+

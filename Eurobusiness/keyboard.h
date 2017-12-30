@@ -16,6 +16,9 @@ void KeyFunc(unsigned char key, int x, int y) {
     if(key=='r' || key=='R')    angle+=4;
     cout << "rotacja obiektow w stopniach = " << angle << endl;
 
+
+    if(key=='\n') cout << "OK";
+
     if(key == 0x1B)		exit(0);
 
 }

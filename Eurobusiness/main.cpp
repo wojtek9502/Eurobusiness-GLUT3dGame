@@ -6,7 +6,6 @@
 #include <gl/glut.h>
 #include "setup_scene.hpp"
 #include "keyboard.h"
-#include "Player.hpp"
 #include <string>
 #include <vector>
 

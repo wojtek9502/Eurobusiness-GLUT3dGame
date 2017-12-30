@@ -48,7 +48,7 @@ void ChangeSize(int w, int h) {
 	glLoadIdentity();
 
 	/* Rzutowanie perspektywiczne */
-	gluPerspective(50, (float)w/h, 130, 470);  ///DOMYSLNIE gluPerspective(50, (float)w/h, 130, 470);
+	gluPerspective(40, (float)w/h, 130, 470);  ///DOMYSLNIE gluPerspective(50, (float)w/h, 130, 470);
 
 	/* Wyzerowanie macierzy widoku modelu dla funkcji rysuj¹cej */
 	glMatrixMode(GL_MODELVIEW);

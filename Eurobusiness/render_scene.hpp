@@ -5,7 +5,7 @@
 
 
 /* Zmienne pomocnicze */
-GLfloat lookA = 45;	/* K¹t patrzenia w kierunku pionowym */
+GLfloat lookA = 25;	/* K¹t patrzenia w kierunku pionowym */
 
 
 /* Parametry œwiat³a i materia³ów */

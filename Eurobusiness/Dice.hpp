@@ -1,6 +1,8 @@
 #ifndef DICE_HPP_INCLUDED
 #define DICE_HPP_INCLUDED
 #include<ctime>
+#include<ios>
+#include<iostream>
 
 
 class Dice
