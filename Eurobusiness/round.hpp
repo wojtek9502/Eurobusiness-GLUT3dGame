@@ -7,6 +7,10 @@
 #include <vector>
 #include "fields.hpp"
 
+//@TODO
+//przesuwac pionki wzgledem liczby wyrzuconych oczek na odpowiednie miejsca okreslone w klasie pola.
+//np pionek1 wylosowal 6 na kostce, idzie i trafia na pole 16, wiec zmienia swoja pozycje na pozycje zapisana w obiekcie Pole o id 16 i w tym id sa wspolrzedne gdzie powinien sie znajdowac ow pionek
+
 using namespace std;
 
 int key;
