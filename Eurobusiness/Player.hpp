@@ -3,7 +3,7 @@
 #define START_CASH 2000.0
 
 #include <string>
-#include <vector>
+#include <iostream>
 
 
 using namespace std;
@@ -28,16 +28,18 @@ Player(int id, string name, float cash, GLfloat position_x, GLfloat position_y, 
     this->position_y=position_y;
     this->position_z=position_z;
 }
+
+void print_position(string player_desc)
+{
+    cout << player_desc << endl;
+    cout << "x = " << position_x << endl;
+    cout << "y = " << position_y << endl;
+    cout << "z = " << position_z << endl;
+    cout << endl;
+}
 };
 
 
- vector<Player> generate_players( vector<Player>& players)
-{
-
-    players.push_back(Player(1,"Player1",START_CASH,0.0, 0.0, 0.0,true));
-    players.push_back(Player(2,"Player2",START_CASH,20.0, 0.0, 0.0,false));
-    return players;
-}
 
 
 
