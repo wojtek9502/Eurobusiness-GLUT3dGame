@@ -10,22 +10,19 @@ using namespace std;
 int key;
 bool is_game_loaded=false;
 
-void wait_on_enter_fun()
+//0=player1    1=player2
+void print_player_info(Dice d1, int player)
 {
-    char temp = 'x';
-    while (temp != '\n')
-    cin.get(temp);
+    cout << "####################################################" << endl;
+    cout << "## Tura gracza " << player++  <<"                                  ##"<< endl;
+    cout << "## Wyrzucono: " << d1.show_dice_result() << "                                   ##" /**/ << endl;
+    cout << "##                                                ##" << endl;
+    cout << "#####  Wcisnij ENTER aby zakonczyc swoja ture  #####" << endl;
+    cout << "####################################################" << endl << endl;
 }
 
 void move_player(Player ptab[], int player_number, int n_numbers_on_dice)
 {
-    if(is_game_loaded==false)
-    {
-       is_game_loaded=true;
-    }
-    else
-    {
-        wait_on_enter_fun();
         //poruszanie. Kazde pole ma 16 "Krokow"
 
         int steps_to_field = 5;
@@ -39,9 +36,6 @@ void move_player(Player ptab[], int player_number, int n_numbers_on_dice)
                     ptab[1].position_x-=j;
             }
         }
-    }
-
-
 }
 
 void next_round(Player ptab[])
@@ -49,34 +43,29 @@ void next_round(Player ptab[])
         Dice d1;
         d1.throw_dice();
 
+    if(is_game_loaded==false)
+    {
+       is_game_loaded=true;
+    }
+    else
+    {
         if(ptab[0].is_my_turn==true)
         {
-            cout << "###############################" << endl;
-            cout << "Tura gracza1" << endl;
-            cout << "Wurzucono: " << 2 /*d1.show_dice_result()*/ << endl;
-            cout << "###############################" << endl << endl;
-
             //tura gracza1
-            //cout << "Tura gracza1" << endl;
-           // move_player(ptab,0,d1.throw_dice());
-            move_player(ptab,0,2);
+            move_player(ptab,0,d1.show_dice_result());
+            print_player_info(d1, ptab[0].id);
 
             ptab[0].is_my_turn=false;
-
         }
         else
         {
-            //tura gracza2
-            cout << "###############################" << endl;
-            cout << "Tura gracza2" << endl;
-            cout << "Wurzucono: " << 1 /*d1.show_dice_result()*/ << endl;
-            cout << "###############################" << endl << endl;
-
-            // move_player(ptab,1,d1.throw_dice())
-            move_player(ptab,1,1);
+            ///tura gracza 1
+            move_player(ptab,1,d1.show_dice_result());
+            print_player_info(d1, ptab[1].id);
 
             ptab[0].is_my_turn=true;
         }
+    }
 }
 
 

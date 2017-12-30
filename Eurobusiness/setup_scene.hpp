@@ -58,8 +58,7 @@ void ChangeSize(int w, int h) {
 
 /* Funkcja zegarowa: */
 void ZegarFun(int val) {
-	/* Odrysowanie sceny: */
-	glutPostRedisplay();
+
 	/* Ponowne wystartowanie zegara: */
 	glutTimerFunc(1000/ANIM_FPS, ZegarFun, 0);
 }

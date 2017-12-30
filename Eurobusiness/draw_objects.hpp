@@ -16,6 +16,7 @@ Player ptab[2]= { Player(1,"Player1",START_CASH,75.0, 3.0, 100.0,true),
 
 void draw_objects_on_scene()
 {
+    next_round(ptab);
 
      //potrzebne do obrotu obiektow
     if(angle >= 360)	angle -= 360;
@@ -31,8 +32,6 @@ void draw_objects_on_scene()
 	glRotatef(10, 0, 1, 0);
 
 
-	//cout << ptab[0].name << " " << ptab[0].position_x << "    ";
-
 
 
 	//GRACZE
@@ -42,6 +41,7 @@ void draw_objects_on_scene()
 		glScalef(3.0, 3., 3); //gracz1
 		glutSolidSphere(1,30,30);
 	glPopMatrix();
+	glRotatef(100, 0, -1, 0);
 
 	glPushMatrix();
 		glTranslatef(ptab[1].position_x, ptab[1].position_y, ptab[1].position_z);
@@ -49,8 +49,9 @@ void draw_objects_on_scene()
 		glScalef(5.0, 5.0, 5.0); //gracz2
 		glutSolidCube(1);
 	glPopMatrix();
+	glRotatef(90, 0, -1, 0);
 
-     next_round(ptab);
+
 
 }
 
