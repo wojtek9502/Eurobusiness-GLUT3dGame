@@ -9,30 +9,77 @@
 #include "fields.hpp"
 #include <string>
 #include <vector>
+#include "Targa.h"
 
-#define ANIM_FPS 40	/* Docelowa liczba ramek animacji na sekundê */
+#define ANIM_FPS 40	/* Docelowa liczba ramek animacji na sekundÃª */
 #define WINDOW_SIZE_X 800
 #define WINDOW_SIZE_Y 600
 
-  GLfloat angle;	/* K¹t obrotu obiektów wokó³ œrodka sceny (animacja) */
+/* Dane globalne (animacja) */
+GLuint tex[1];	/* tekstura */
 
+  GLfloat angle;	/* KÂ¹t obrotu obiektÃ³w wokÃ³Â³ Å“rodka sceny (animacja) */
 
-  Field pfields[] = { Field(1,"Start",75,3,100, 72,3,110, 0,-1)
+//@TODO
+//DorobiÄ‡ pola na planszy
+  Field pfields[] = { Field(1,"Start",90,3,90, 90,3,97, 0,-1)
                         };
+
     Player ptab[2]= { Player(1,"Player1",START_CASH, pfields[0].p1_position_x, 3.0, pfields[0].p1_position_z,true),
                   Player(2,"Player2",START_CASH, pfields[0].p2_position_x,3.0,pfields[0].p2_position_z ,false)
                 };
 
 
 /* Zmienne pomocnicze */
-GLfloat lookA = 25;	/* K¹t patrzenia w kierunku pionowym */
+GLfloat lookA = 25;	/* KÂ¹t patrzenia w kierunku pionowym */
 
-/* Parametry œwiat³a i materia³ów */
+/* Parametry Å“wiatÂ³a i materiaÂ³Ã³w */
 GLfloat lightAmb[] = {0.1, 0.1, 0.1, 1.0};
 GLfloat lightDif[] = {0.7, 0.7, 0.7, 1.0};
 GLfloat lightPos[] = {0, 300, 0.0, 1.0};  ///defauktowo pierwszy param na 100 drugi na 200
 GLfloat lightSpec[] = {1, 1, 1, 1};
 
+
+/* Funkcja ustawia parametry renderowania i oÅ“wietlenie... */
+/* wywoÂ³ywana na poczÂ¹tku programu */
+void setupScene(void) {
+	/* Bufor gÂ³ÃªbokoÅ“ci */
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_TEXTURE_2D);    /* WÅ‚Ä…czenie teksturowania */
+
+   /* Wygenerowanie trzech tzw. "obiektÃ³w" dla tekstur */
+	glGenTextures(1, tex);
+
+    /* Aktywacja kaÅ¼dej tekstury po kolei i Å‚adowanie z plikÃ³w TGA */
+	glBindTexture(GL_TEXTURE_2D, tex[0]);
+	LoadTGAMipmap("texture.tga");   //PATH TO TEXTURE
+
+	/* WÂ³Â¹czenie oÅ“wietlenia */
+	glEnable(GL_LIGHTING);
+
+	/* NatÃªÂ¿enie Å“wiatÂ³a otoczenia (AMBIENT) */
+	glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
+	/* NatÃªÂ¿enie Å“wiatÂ³a rozpraszajÂ¹cego (DIFFUSE) */
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDif);
+	/* Å’wiatÂ³o nr 0 umieszczone nad scenÂ¹ z prawej strony */
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+	/* NatÃªÂ¿enie odbÂ³yskÃ³w */
+	glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpec);
+	/* WÂ³Â¹czenie Å“wiatÂ³a nr 0 */
+	glEnable(GL_LIGHT0);
+
+	/* Ustawienie odbÂ³ysku materiaÂ³Ã³w */
+	glMaterialfv(GL_FRONT, GL_SPECULAR, lightSpec);
+	/* Skupienie i jasnoÅ“Ã¦ plamy Å“wiatÂ³a */
+	glMateriali(GL_FRONT, GL_SHININESS, 64); //defaultowo ostatni param to 64
+
+	/* Å’ledzenie kolorÃ³w */
+	/* WspÃ³Â³czynniki odbicia Å“wiatÂ³a sÂ¹ takie same jak kolor */
+	glEnable(GL_COLOR_MATERIAL);
+	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+
+	glClearColor(1.0, 0.3, 0.3, 1.0);
+}
 
 void draw_objects_on_scene(Player ptab[])
 {
@@ -41,6 +88,71 @@ void draw_objects_on_scene(Player ptab[])
     glRotatef(angle, 0, -1, 0);
 
     ///PLANSZA
+    //glBindTexture(GL_TEXTURE_2D, tex[0]);
+	glBegin(GL_QUADS);
+        glColor4f(1.0, 1.0, 1.0, 1.0);
+		// Åšciana bliÅ¼sza
+		//glTexCoord2f(0, 0);
+		glVertex3f(-100,  1,  100);
+		//glTexCoord2f(1, 0);
+		glVertex3f( 100,  1,  100);
+		//glTexCoord2f(1, 1);
+		glVertex3f( 100, -1,  100);
+		//glTexCoord2f(0, 1);
+		glVertex3f(-100, -1,  100);
+
+		// Åšciana dalsza
+		glTexCoord2f(0, 0);
+		//glVertex3f(-100,  1, -100);
+		glTexCoord2f(1, 0);
+		//glVertex3f( 100,  1, -100);
+		glTexCoord2f(1, 1);
+		//glVertex3f( 100, -1, -100);
+		glTexCoord2f(0, 1);glVertex3f(-100, -1, -100);
+	glEnd();
+	glBindTexture(GL_TEXTURE_2D, tex[0]);
+	glBegin(GL_QUADS);
+		// Åšciana gÃ³rna
+		glTexCoord2f(0, 0);glVertex3f(-100,  1, -100);
+		glTexCoord2f(1, 0);glVertex3f( 100,  1, -100);
+		glTexCoord2f(1, 1);glVertex3f( 100,  1,  100);
+		glTexCoord2f(0, 1);glVertex3f(-100,  1,  100);
+
+		// Åšciana dolna
+		//glTexCoord2f(0, 0);
+		glVertex3f(-100, -1, -100);
+		//glTexCoord2f(1, 0);
+		glVertex3f( 100, -1, -100);
+		//glTexCoord2f(1, 1);
+		glVertex3f( 100, -1,  100);
+		//glTexCoord2f(0, 1);
+		glVertex3f(-100, -1,  100);
+	glEnd();
+	//glBindTexture(GL_TEXTURE_2D, tex[0]);
+	glBegin(GL_QUADS);
+		// Åšciana lewa
+		//glTexCoord2f(0, 0);
+		glVertex3f(-100,  1,  100);
+		//glTexCoord2f(1, 0);
+		glVertex3f(-100,  1, -100);
+		//glTexCoord2f(1, 1);
+		glVertex3f(-100, -1, -100);
+		//glTexCoord2f(0, 1);
+		glVertex3f(-100, -1,  100);
+
+		// Åšciana prawa
+		//glTexCoord2f(0, 0);
+		glVertex3f( 100,  1,  100);
+		//glTexCoord2f(1, 0);
+		glVertex3f( 100,  1, -100);
+		//glTexCoord2f(1, 1);
+		glVertex3f( 100, -1, -100);
+		//glTexCoord2f(0, 1);
+		glVertex3f( 100, -1,  100);
+	glEnd();
+
+/*
+    // STARY OBIEKT PLANSZY
     glPushMatrix();
 		glTranslatef(0, 0, 0);
 		glColor3f(0, 1, 0);
@@ -48,6 +160,7 @@ void draw_objects_on_scene(Player ptab[])
 		glutSolidCube(1);
 	glPopMatrix();
 	glRotatef(10, 0, 1, 0);
+*/
 
 	//GRACZE
     glPushMatrix();
@@ -71,52 +184,51 @@ print_players_position(ptab);
 
 }
 
+/* Funkcja rysujÂ¹ca */
+void RenderScene(void) {
+	/* Wyczyszczenie tÂ³a czarnym kolorem */
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-/* Funkcja ustawia parametry renderowania i oœwietlenie... */
-/* wywo³ywana na pocz¹tku programu */
-void setupScene(void) {
-	/* Bufor g³êbokoœci */
-	glEnable(GL_DEPTH_TEST);
-	/* W³¹czenie oœwietlenia */
-	glEnable(GL_LIGHTING);
+	/* WstÃªpne ustawienie sceny */
+	glLoadIdentity();
+	/* OdsuniÃªcie Å“rodka sceny od obserwatora */
+	glTranslatef(0, 0, -300);
+	/* Ustawienie kÂ¹ta obserwacji */
+	glRotatef(lookA, 1, 0, 0);
 
-	/* Natê¿enie œwiat³a otoczenia (AMBIENT) */
-	glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
-	/* Natê¿enie œwiat³a rozpraszaj¹cego (DIFFUSE) */
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDif);
-	/* Œwiat³o nr 0 umieszczone nad scen¹ z prawej strony */
+	/* Pozycjonowanie Å“wiatÂ³a */
+	/* Å’wiatÂ³o jest nieruchome wzglÃªdem obiektÃ³w - one przesuwajÂ¹ siÃª pod Å“wiatÂ³em */
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
-	/* Natê¿enie odb³ysków */
-	glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpec);
-	/* W³¹czenie œwiat³a nr 0 */
-	glEnable(GL_LIGHT0);
+	/* Animacja */
 
-	/* Ustawienie odb³ysku materia³ów */
-	glMaterialfv(GL_FRONT, GL_SPECULAR, lightSpec);
-	/* Skupienie i jasnoœæ plamy œwiat³a */
-	glMateriali(GL_FRONT, GL_SHININESS, 64); //defaultowo ostatni param to 64
 
-	/* Œledzenie kolorów */
-	/* Wspó³czynniki odbicia œwiat³a s¹ takie same jak kolor */
-	glEnable(GL_COLOR_MATERIAL);
-	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+///##################################################-----------FUNKCJA RYSUJACA OBIEKTY NA PLANSZY----------#############
+	draw_objects_on_scene(ptab);
+///##################################################-----------FUNKCJA RYSUJACA OBIEKTY NA PLANSZY----------#############
+
+	/* Zmiana bufora i oprÃ³Â¿nienie kolejki renderowania */
+	glutSwapBuffers();
 }
 
-/* Zmiana rozmiarów okna */
+
+
+
+
+/* Zmiana rozmiarÃ³w okna */
 void ChangeSize(int w, int h) {
 	/* Zabezpieczenie przed dzieleniem przez zero */
 	if(h==0)	h=1;
 	/* Ustawienie widoku */
 	glViewport(0, 0, w, h);
 
-	/* Ustawienie obszaru obcinania z uwzglêdnieniem proporcji okna */
+	/* Ustawienie obszaru obcinania z uwzglÃªdnieniem proporcji okna */
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
 	/* Rzutowanie perspektywiczne */
 	gluPerspective(40, (float)w/h, 130, 470);  ///DOMYSLNIE gluPerspective(50, (float)w/h, 130, 470);
 
-	/* Wyzerowanie macierzy widoku modelu dla funkcji rysuj¹cej */
+	/* Wyzerowanie macierzy widoku modelu dla funkcji rysujÂ¹cej */
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
@@ -160,36 +272,11 @@ void ZegarFun(int val) {
 
 
 
-/* Funkcja rysuj¹ca */
-void RenderScene(void) {
-	/* Wyczyszczenie t³a czarnym kolorem */
-	glClearColor(0.0, 0.0, 0.0, 1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	/* Wstêpne ustawienie sceny */
-	glLoadIdentity();
-	/* Odsuniêcie œrodka sceny od obserwatora */
-	glTranslatef(0, 0, -300);
-	/* Ustawienie k¹ta obserwacji */
-	glRotatef(lookA, 1, 0, 0);
-
-	/* Pozycjonowanie œwiat³a */
-	/* Œwiat³o jest nieruchome wzglêdem obiektów - one przesuwaj¹ siê pod œwiat³em */
-	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
-	/* Animacja */
-
-
-///##################################################-----------FUNKCJA RYSUJACA OBIEKTY NA PLANSZY----------#############
-	draw_objects_on_scene(ptab);
-///##################################################-----------FUNKCJA RYSUJACA OBIEKTY NA PLANSZY----------#############
-
-	/* Zmiana bufora i opró¿nienie kolejki renderowania */
-	glutSwapBuffers();
-}
 
 
 
-/* Funkcja g³ówna */
+
+/* Funkcja gÂ³Ã³wna */
 int main(int argc, char *argv[]) {
 
 	glutInit(&argc, argv);
@@ -198,18 +285,18 @@ int main(int argc, char *argv[]) {
 	glutInitWindowSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 	glutCreateWindow("Eurobusiness Game");
 
-	/* Ustawienie funkcji rysuj¹cej zawartoœæ okna */
+	/* Ustawienie funkcji rysujÂ¹cej zawartoÅ“Ã¦ okna */
 	glutDisplayFunc(RenderScene);
-	/* Funkcja ustawiaj¹ca parametry po zmianie rozmiaru okna */
+	/* Funkcja ustawiajÂ¹ca parametry po zmianie rozmiaru okna */
 	glutReshapeFunc(ChangeSize);
-	/* Funkcja obs³uguj¹ca klawiaturê */
+	/* Funkcja obsÂ³ugujÂ¹ca klawiaturÃª */
 	glutKeyboardFunc(KeyFunc);
 
 	/* Ustawienia OpenGL */
 	setupScene();
 	/* Start zegara po raz pierwszy */
 	glutTimerFunc(1000/ANIM_FPS, ZegarFun, 0);
-	/* Wejœcie do g³ównej pêtli programu */
+	/* WejÅ“cie do gÂ³Ã³wnej pÃªtli programu */
 
     //vector<Player> players;
     //players = generate_players(players);

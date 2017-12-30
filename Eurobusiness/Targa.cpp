@@ -9,8 +9,10 @@
 #include <stdio.h>
 #include <gl/gl.h>
 #include <gl/glu.h>
+#include <iostream>
 
 #include "Targa.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Procedura ³aduje plik o podanej nazwie
@@ -63,6 +65,8 @@ GLubyte *LoadTGAImage(char *filename, TARGAINFO *info)
 
 		fclose(plik);
 	}
+	else
+        std::cout << "Brak pliku image" << std::endl;
 
 	return(Bits);
 }
