@@ -25,19 +25,19 @@ void print_player_info(Dice d1, string desc)
 void move_player(Player ptab[], int player_number, int n_numbers_on_dice)
 {
         //poruszanie. Kazde pole ma 16 "Krokow"
-        ptab[0].print_position("Gracz1 kulka");
-        ptab[1].print_position("Gracz2 teapot");
         int steps_to_field = 5;
         for(int i=0; i<n_numbers_on_dice; i++)
         {
             for(int j=0; j<steps_to_field; j++)
             {
-                 if(player_number==0)
+                 if(player_number==1)
                     ptab[0].position_x-=j;
                  else
                     ptab[1].position_x-=j;
             }
         }
+        ptab[0].print_position("Gracz1 kulka");
+        ptab[1].print_position("Gracz2 kwadrat");
 }
 
 void next_round(Player ptab[])
@@ -57,19 +57,20 @@ void next_round(Player ptab[])
     else
     {
         string p_desc = "Gracz1 kulka";
+        cout << "p1 is my turn= " << ptab[0].is_my_turn << endl;
         if(ptab[0].is_my_turn==true)
         {
             //tura gracza1
-            move_player(ptab,0,d1.show_dice_result());
+            move_player(ptab,1,d1.show_dice_result());
             print_player_info(d1, p_desc);
 
             ptab[0].is_my_turn=false;
         }
         else
         {
-            string p_desc = "Gracz2 teapot";
+            string p_desc = "Gracz2 kwadrat";
             ///tura gracza 2
-            move_player(ptab,1,d1.show_dice_result());
+            move_player(ptab,2,d1.show_dice_result());
             print_player_info(d1, p_desc);
 
             ptab[0].is_my_turn=true;

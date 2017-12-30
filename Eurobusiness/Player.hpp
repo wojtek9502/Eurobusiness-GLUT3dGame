@@ -27,10 +27,12 @@ Player(int id, string name, float cash, GLfloat position_x, GLfloat position_y, 
     this->position_x=position_x;
     this->position_y=position_y;
     this->position_z=position_z;
+    this->is_my_turn=is_my_turn;
 }
 
 void print_position(string player_desc)
 {
+    cout << "Dane po ruchu" << endl;
     cout << player_desc << endl;
     cout << "x = " << position_x << endl;
     cout << "y = " << position_y << endl;

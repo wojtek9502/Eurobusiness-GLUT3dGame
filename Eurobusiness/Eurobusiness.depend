@@ -267,13 +267,13 @@
 1514640434 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\render_scene.hpp
 	"draw_objects.hpp"
 
-1514645506 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\draw_objects.hpp
+1514647195 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\draw_objects.hpp
 	<vector>
 	"Player.hpp"
 	"round.hpp"
 	<iostream>
 
-1514646101 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\player.hpp
+1514647525 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\player.hpp
 	<string>
 	<iostream>
 
@@ -281,7 +281,7 @@
 	<iostream>
 	"round.hpp"
 
-1514646905 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\round.hpp
+1514647660 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\round.hpp
 	"Dice.hpp"
 	<iostream>
 	"Player.hpp"
