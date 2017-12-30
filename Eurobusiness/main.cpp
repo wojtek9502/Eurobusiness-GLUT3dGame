@@ -32,7 +32,11 @@ GLfloat lightSpec[] = {1, 1, 1, 1};
 
 void draw_objects_on_scene(Player ptab[])
 {
-    next_round(ptab);
+    ///WAZNA FUNKCJA
+    next_round(ptab,fields);
+
+
+
      //potrzebne do obrotu obiektow
     if(angle >= 360)	angle -= 360;
     glRotatef(angle, 0, -1, 0);

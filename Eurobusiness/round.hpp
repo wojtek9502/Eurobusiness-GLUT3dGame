@@ -4,6 +4,8 @@
 #include <iostream>
 #include "Dice.hpp"
 #include<windows.h>
+#include <vector>
+#include "fields.hpp"
 
 using namespace std;
 
@@ -56,9 +58,13 @@ void move_player(Player ptab[], int player_number, int n_numbers_on_dice)
         ptab[1].print_position("Gracz2 kwadrat");
 }
 
-void next_round(Player ptab[])
+void next_round(Player ptab[], vector<Field>& fields)
 {
     system("cls");
+
+
+    cout << "Mam dostep do vektora pol na planszy mozna kombinowac" << fields.size() << endl;
+
         Dice d1;
         d1.throw_dice();
 
