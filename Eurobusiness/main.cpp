@@ -14,12 +14,16 @@
 #define WINDOW_SIZE_X 800
 #define WINDOW_SIZE_Y 600
 
-  vector<Field> fields;
   GLfloat angle;	/* K¹t obrotu obiektów wokó³ œrodka sceny (animacja) */
 
-  Player ptab[2]= { Player(1,"Player1",START_CASH,75.0, 3.0, 100.0,true),
-                  Player(2,"Player2",300,75.0, 3.0, 105.0,false)
+
+  Field pfields[] = { Field(1,"Start",75,3,100, 72,3,110, 0,-1)
+                        };
+    Player ptab[2]= { Player(1,"Player1",START_CASH, pfields[0].p1_position_x, 3.0, pfields[0].p1_position_z,true),
+                  Player(2,"Player2",START_CASH, pfields[0].p2_position_x,3.0,pfields[0].p2_position_z ,false)
                 };
+
+
 /* Zmienne pomocnicze */
 GLfloat lookA = 25;	/* K¹t patrzenia w kierunku pionowym */
 
@@ -32,8 +36,6 @@ GLfloat lightSpec[] = {1, 1, 1, 1};
 
 void draw_objects_on_scene(Player ptab[])
 {
-    ///WAZNA FUNKCJA
-    next_round(ptab,fields);
 
 
 
@@ -66,6 +68,9 @@ void draw_objects_on_scene(Player ptab[])
 		glutSolidCube(1);
 	glPopMatrix();
 	//glRotatef(90, 0, 1, 0);
+
+print_players_position(ptab);
+	next_round(ptab,pfields);
 
 }
 
@@ -189,9 +194,6 @@ void RenderScene(void) {
 
 /* Funkcja g³ówna */
 int main(int argc, char *argv[]) {
-
-        ///wypelnij wektor pol
-    fields = generate_fields(fields);
 
 	glutInit(&argc, argv);
 	/* Przygotowanie okna */

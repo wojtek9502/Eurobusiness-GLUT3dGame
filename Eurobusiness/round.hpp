@@ -39,34 +39,30 @@ void print_player_info(Dice d1,Player ptab[], int player, string desc)
             cout << "####################################################" << endl << endl;
     }
 
+
 }
+
+void print_players_position(Player ptab[])
+{
+     ptab[0].print_position("Gracz1 kulka");
+     ptab[1].print_position("Gracz2 kwadrat");
+     cout << "p1 is my turn= " << ptab[0].is_my_turn << endl;
+}
+
 
 void move_player(Player ptab[], int player_number, int n_numbers_on_dice)
 {
-    int steps_to_field=3;
-        for(int i=0; i<n_numbers_on_dice; i++)
-        {
-            for(int j=0; j<steps_to_field; j++)
-            {
-                 if(player_number==1)
-                    ptab[0].position_x-=j;
-                 else
-                    ptab[1].position_x-=j;
-            }
-        }
-        ptab[0].print_position("Gracz1 kulka");
-        ptab[1].print_position("Gracz2 kwadrat");
+
+
+
 }
 
-void next_round(Player ptab[], vector<Field>& fields)
+void next_round(Player ptab[], Field pfields[])
 {
-    system("cls");
 
 
-    cout << "Mam dostep do vektora pol na planszy mozna kombinowac" << fields.size() << endl;
-
-        Dice d1;
-        d1.throw_dice();
+    Dice d1;
+    d1.throw_dice();
 
     if(is_game_loaded==false)
     {
@@ -79,7 +75,7 @@ void next_round(Player ptab[], vector<Field>& fields)
     else
     {
         string p_desc = "Gracz1 kulka";
-        cout << "p1 is my turn= " << ptab[0].is_my_turn << endl;
+
         if(ptab[0].is_my_turn==true)
         {
             //tura gracza1
