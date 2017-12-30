@@ -13,17 +13,20 @@ private:
 public:
     Dice() {};
 
-    int throw_dice()
+    void throw_dice()
     {
         srand(time(NULL));
         number= 1 + rand()%6;
+    }
+
+    int show_dice_result()
+    {
         return number;
     }
 
-    void print_throw_result()
-    {
-        cout << number;
-    }
+
+
+
 
 };
 

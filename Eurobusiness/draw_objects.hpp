@@ -16,7 +16,6 @@ Player ptab[2]= { Player(1,"Player1",START_CASH,75.0, 3.0, 100.0,true),
 
 void draw_objects_on_scene()
 {
-    next_round(ptab);
 
      //potrzebne do obrotu obiektow
     if(angle >= 360)	angle -= 360;
@@ -51,7 +50,7 @@ void draw_objects_on_scene()
 		glutSolidCube(1);
 	glPopMatrix();
 
-
+     next_round(ptab);
 
 }
 

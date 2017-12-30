@@ -5,7 +5,7 @@
 /* Funkcja obs³uguj¹ca klawiaturê */
 void KeyFunc(unsigned char key, int x, int y) {
     //rotacja gora dol
-    //if(lookA <=15) lookA=15;
+    if(lookA <=15) lookA=15;
     if(lookA >=75) lookA=75;
 
     if(key=='w' || key=='W')    lookA += 5;

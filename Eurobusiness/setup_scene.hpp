@@ -2,8 +2,7 @@
 #define SETUP_SCENE_HPP_INCLUDED
 
 #include "render_scene.hpp"
-
-#define ANIM_FPS 40	/* Docelowa liczba ramek animacji na sekundê */
+#define ANIM_FPS 40
 
 
 /* Funkcja ustawia parametry renderowania i oœwietlenie... */
