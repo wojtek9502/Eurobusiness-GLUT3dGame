@@ -1,5 +1,6 @@
 #ifndef FIELDS_HPP_INCLUDED
 #define FIELDS_HPP_INCLUDED
+#include<vector>
 
 using namespace std;
 class Field

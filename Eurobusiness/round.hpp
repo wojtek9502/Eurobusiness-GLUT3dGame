@@ -1,8 +1,8 @@
 #ifndef ROUND_HPP_INCLUDED
 #define ROUND_HPP_INCLUDED
-#include "Dice.hpp"
+
 #include <iostream>
-#include "Player.hpp"
+#include "Dice.hpp"
 #include<windows.h>
 
 using namespace std;
@@ -12,6 +12,7 @@ bool is_game_loaded=false;
 bool camera_move=false;
 
 //0=player1    1=player2
+
 void print_player_info(Dice d1,Player ptab[], int player, string desc)
 {
      //player1
@@ -40,8 +41,7 @@ void print_player_info(Dice d1,Player ptab[], int player, string desc)
 
 void move_player(Player ptab[], int player_number, int n_numbers_on_dice)
 {
-        //poruszanie. Kazde pole ma 16 "Krokow"
-        int steps_to_field = 5;
+    int steps_to_field=3;
         for(int i=0; i<n_numbers_on_dice; i++)
         {
             for(int j=0; j<steps_to_field; j++)
