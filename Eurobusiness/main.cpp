@@ -16,7 +16,7 @@
 #define WINDOW_SIZE_Y 600
 
 /* Dane globalne (animacja) */
-GLuint tex[1];	/* tekstura */
+GLuint tex[2];	/* tekstura */
 
   GLfloat angle;	/* K¹t obrotu obiektów wokó³ œrodka sceny (animacja) */
 
@@ -48,11 +48,13 @@ void setupScene(void) {
 	glEnable(GL_TEXTURE_2D);    /* Włączenie teksturowania */
 
    /* Wygenerowanie trzech tzw. "obiektów" dla tekstur */
-	glGenTextures(1, tex);
+	glGenTextures(2, tex);
 
     /* Aktywacja każdej tekstury po kolei i ładowanie z plików TGA */
 	glBindTexture(GL_TEXTURE_2D, tex[0]);
 	LoadTGAMipmap("texture.tga");   //PATH TO TEXTURE
+	glBindTexture(GL_TEXTURE_2D, tex[1]);
+	LoadTGAMipmap("h_tex.tga");   //PATH TO TEXTURE
 
 	/* W³¹czenie oœwietlenia */
 	glEnable(GL_LIGHTING);
@@ -110,24 +112,29 @@ void draw_objects_on_scene(Player ptab[])
 		//glVertex3f( 100, -1, -100);
 		glTexCoord2f(0, 1);glVertex3f(-100, -1, -100);
 	glEnd();
+
 	glBindTexture(GL_TEXTURE_2D, tex[0]);
 	glBegin(GL_QUADS);
 		// Ściana górna
 		glTexCoord2f(0, 0);glVertex3f(-100,  1, -100);
-		glTexCoord2f(1, 0);glVertex3f( 100,  1, -100);
+		glTexCoord2f(0, 1);glVertex3f( 100,  1, -100);
 		glTexCoord2f(1, 1);glVertex3f( 100,  1,  100);
-		glTexCoord2f(0, 1);glVertex3f(-100,  1,  100);
-
-		// Ściana dolna
-		//glTexCoord2f(0, 0);
-		glVertex3f(-100, -1, -100);
-		//glTexCoord2f(1, 0);
-		glVertex3f( 100, -1, -100);
-		//glTexCoord2f(1, 1);
-		glVertex3f( 100, -1,  100);
-		//glTexCoord2f(0, 1);
-		glVertex3f(-100, -1,  100);
+		glTexCoord2f(1, 0);glVertex3f(-100,  1,  100);
 	glEnd();
+
+	glBindTexture(GL_TEXTURE_2D, tex[1]);
+	glBegin(GL_QUADS);
+        // Ściana dolna
+		glTexCoord2f(0, 0);
+		glVertex3f(-100, -1, -100);
+		glTexCoord2f(1, 0);
+		glVertex3f( 100, -1, -100);
+        glTexCoord2f(1, 1);
+		glVertex3f( 100, -1,  100);
+		glTexCoord2f(0, 1);
+		glVertex3f(-100, -1,  100);
+    glEnd();
+
 	//glBindTexture(GL_TEXTURE_2D, tex[0]);
 	glBegin(GL_QUADS);
 		// Ściana lewa
