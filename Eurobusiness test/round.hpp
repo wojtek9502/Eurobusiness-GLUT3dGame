@@ -51,13 +51,9 @@ void print_players_position(Player ptab[])
 {
      ptab[0].print_position("Gracz1 kulka");
      ptab[1].print_position("Gracz2 kwadrat");
-     cout << "p1 is my turn= " << ptab[0].is_my_turn << endl;
 }
 
-void print_player_one_position(Player ptab[])
-{
-     ptab[0].print_position("Gracz1 kulka");
-}
+
 
 void move_player(Player ptab[], int player_number, int n_numbers_on_dice)
 {
@@ -72,23 +68,29 @@ void move_test(Player ptab[], string direction)
     if(direction=="up")
     {
      ptab[0].position_z--;
+     ptab[1].position_z--;
     }
 
     if(direction=="down")
     {
       ptab[0].position_z++;
+      ptab[1].position_z++;
+
     }
 
     if(direction=="left")
     {
       ptab[0].position_x--;
+      ptab[1].position_x--;
     }
 
     if(direction=="right")
     {
      ptab[0].position_x++;
+     ptab[1].position_x++;
     }
-    print_player_one_position(ptab);
+    system("cls");
+    print_players_position(ptab);
 
 }
 

@@ -35,7 +35,7 @@ Player(int id, string name, float cash, GLfloat position_x, GLfloat position_y, 
 
 void print_position(string player_desc)
 {
-    system("cls");
+
     cout << "Dane po ruchu" << endl;
     cout << player_desc << endl;
     cout << "x = " << position_x << endl;
