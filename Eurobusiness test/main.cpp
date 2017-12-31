@@ -31,12 +31,12 @@ GLuint tex[2];	/* tekstura */
 
 
 /* Zmienne pomocnicze */
-GLfloat lookA = 25;	/* K¹t patrzenia w kierunku pionowym */
+GLfloat lookA = 90;	/* K¹t patrzenia w kierunku pionowym */
 
 /* Parametry œwiat³a i materia³ów */
-GLfloat lightAmb[] = {0.1, 0.1, 0.1, 1.0};
+GLfloat lightAmb[] = {0.6, 0.6, 0.6, 1.0}; //natezenie swiatla
 GLfloat lightDif[] = {0.7, 0.7, 0.7, 1.0};
-GLfloat lightPos[] = {0, 300, 0.0, 1.0};  ///defauktowo pierwszy param na 100 drugi na 200
+GLfloat lightPos[] = {0, 300, 0.0, 1.0};  ///defaultowo pierwszy param na 100 drugi na 200
 GLfloat lightSpec[] = {1, 1, 1, 1};
 
 
@@ -52,9 +52,9 @@ void setupScene(void) {
 
     /* Aktywacja każdej tekstury po kolei i ładowanie z plików TGA */
 	glBindTexture(GL_TEXTURE_2D, tex[0]);
-	LoadTGAMipmap("C:\\Users\\Wojtek\\Documents\\GitHub\\Eurobusiness-GLUT3dGame\\Eurobusiness\\texture.tga");   //PATH TO TEXTURE
+	LoadTGAMipmap("C:\\Users\\Wojtek\\Documents\\GitHub\\Eurobusiness-GLUT3dGame\\Eurobusiness\\scene_tex.tga");   //PATH TO TEXTURE def: scene_tex.tga
 	glBindTexture(GL_TEXTURE_2D, tex[1]);
-	LoadTGAMipmap("h_tex.tga");   //PATH TO TEXTURE
+	LoadTGAMipmap("C:\\Users\\Wojtek\\Documents\\GitHub\\Eurobusiness-GLUT3dGame\\Eurobusiness\\h_tex.tga");   //PATH TO TEXTURE  def: h_tex.tga
 
 	/* W³¹czenie oœwietlenia */
 	glEnable(GL_LIGHTING);
@@ -186,7 +186,7 @@ void draw_objects_on_scene(Player ptab[])
 	glPopMatrix();
 	//glRotatef(90, 0, 1, 0);
 
-print_players_position(ptab);
+//print_players_position(ptab);
 	next_round(ptab,pfields);
 
 }
@@ -263,6 +263,11 @@ void KeyFunc(unsigned char key, int x, int y) {
        camera_move=false;
        glutPostRedisplay();
     }
+
+    if(key=='t') {move_test(ptab, "up"); glutPostRedisplay();}
+    if(key=='g') {move_test(ptab, "down"); glutPostRedisplay();}
+    if(key=='f') {move_test(ptab, "left"); glutPostRedisplay();}
+    if(key=='h') {move_test(ptab, "right"); glutPostRedisplay();}
     if(key == 0x1B)		exit(0);
 }
 

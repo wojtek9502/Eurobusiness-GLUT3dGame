@@ -21,7 +21,7 @@
 // Jeœli by³ b³¹d - zwraca NULL
 GLubyte *LoadTGAImage(char *filename, TARGAINFO *info)
 {
-    puts(filename);
+  //  puts(filename);
 	GLubyte	TGAHeader[12]={0,0,2,0,0,0,0,0,0,0,0,0};	// Nag³ówek TGA bez kompresji
 	GLubyte	TGACompare[12];			// Tu siê za³aduje dane z pliku
 	GLubyte	Header[6];			// Pierwsze potrzebne 6 bajtów z pliku

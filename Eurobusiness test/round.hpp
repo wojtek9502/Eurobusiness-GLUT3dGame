@@ -6,6 +6,7 @@
 #include<windows.h>
 #include <vector>
 #include "fields.hpp"
+#include "Player.hpp"
 
 //@TODO
 //przesuwac pionki wzgledem liczby wyrzuconych oczek na odpowiednie miejsca okreslone w klasie pola.
@@ -53,11 +54,41 @@ void print_players_position(Player ptab[])
      cout << "p1 is my turn= " << ptab[0].is_my_turn << endl;
 }
 
+void print_player_one_position(Player ptab[])
+{
+     ptab[0].print_position("Gracz1 kulka");
+}
 
 void move_player(Player ptab[], int player_number, int n_numbers_on_dice)
 {
 
 
+
+}
+
+
+void move_test(Player ptab[], string direction)
+{
+    if(direction=="up")
+    {
+     ptab[0].position_z--;
+    }
+
+    if(direction=="down")
+    {
+      ptab[0].position_z++;
+    }
+
+    if(direction=="left")
+    {
+      ptab[0].position_x--;
+    }
+
+    if(direction=="right")
+    {
+     ptab[0].position_x++;
+    }
+    print_player_one_position(ptab);
 
 }
 
@@ -84,7 +115,7 @@ void next_round(Player ptab[], Field pfields[])
         {
             //tura gracza1
             move_player(ptab,1,d1.show_dice_result());
-            print_player_info(d1,ptab, 0, p_desc);
+            //print_player_info(d1,ptab, 0, p_desc);
 
             ptab[0].is_my_turn=false;
         }
@@ -93,7 +124,7 @@ void next_round(Player ptab[], Field pfields[])
             string p_desc = "Gracz2 kwadrat";
             ///tura gracza 2
             move_player(ptab,2,d1.show_dice_result());
-            print_player_info(d1,ptab,1, p_desc);
+           // print_player_info(d1,ptab,1, p_desc);
 
             ptab[0].is_my_turn=true;
         }

@@ -50,13 +50,9 @@
 		<Unit filename="Player.hpp" />
 		<Unit filename="Targa.cpp" />
 		<Unit filename="Targa.h" />
-		<Unit filename="draw_objects.hpp" />
 		<Unit filename="fields.hpp" />
-		<Unit filename="keyboard.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="render_scene.hpp" />
 		<Unit filename="round.hpp" />
-		<Unit filename="setup_scene.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

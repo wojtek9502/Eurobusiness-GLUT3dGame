@@ -186,7 +186,7 @@ void draw_objects_on_scene(Player ptab[])
 	glPopMatrix();
 	//glRotatef(90, 0, 1, 0);
 
-print_players_position(ptab);
+//print_players_position(ptab);
 	next_round(ptab,pfields);
 
 }

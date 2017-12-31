@@ -251,7 +251,7 @@
 	"Dice.hpp"
 	<iostream>
 
-1514723582 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\main.cpp
+1514727709 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\main.cpp
 	<stdlib.h>
 	<gl/gl.h>
 	<gl/glu.h>
@@ -320,4 +320,48 @@
 
 1514662453 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\fields.hpp
 	<vector>
+
+1514727724 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness test\targa.cpp
+	<windows.h>
+	<stdlib.h>
+	<stdio.h>
+	<gl/gl.h>
+	<gl/glu.h>
+	<iostream>
+	"Targa.h"
+
+1514655235 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness test\targa.h
+
+1514728326 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness test\main.cpp
+	<stdlib.h>
+	<gl/gl.h>
+	<gl/glu.h>
+	<gl/glut.h>
+	"Player.hpp"
+	"round.hpp"
+	"fields.hpp"
+	<string>
+	<vector>
+	"Targa.h"
+
+1514729186 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness test\player.hpp
+	<string>
+	<iostream>
+	"fields.hpp"
+
+1514662453 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness test\fields.hpp
+	<vector>
+
+1514728512 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness test\round.hpp
+	<iostream>
+	"Dice.hpp"
+	<windows.h>
+	<vector>
+	"fields.hpp"
+	"Player.hpp"
+
+1514651684 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness test\dice.hpp
+	<ctime>
+	<ios>
+	<iostream>
 
