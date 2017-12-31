@@ -252,7 +252,7 @@ void KeyFunc(unsigned char key, int x, int y) {
     //rotacja
     if(key=='r' || key=='R')
     {
-        angle+=4;
+        angle-=4;
         camera_move=true;
         glutPostRedisplay();
     }
