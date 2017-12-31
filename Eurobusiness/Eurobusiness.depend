@@ -251,7 +251,7 @@
 	"Dice.hpp"
 	<iostream>
 
-1514671724 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\main.cpp
+1514726008 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\main.cpp
 	<stdlib.h>
 	<gl/gl.h>
 	<gl/glu.h>
@@ -299,7 +299,7 @@
 
 1514655235 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\targa.h
 
-1514667405 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\targa.cpp
+1514723686 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\targa.cpp
 	<windows.h>
 	<stdlib.h>
 	<stdio.h>

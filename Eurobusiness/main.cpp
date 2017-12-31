@@ -34,9 +34,9 @@ GLuint tex[2];	/* tekstura */
 GLfloat lookA = 25;	/* K¹t patrzenia w kierunku pionowym */
 
 /* Parametry œwiat³a i materia³ów */
-GLfloat lightAmb[] = {0.1, 0.1, 0.1, 1.0};
+GLfloat lightAmb[] = {0.6, 0.6, 0.6, 1.0}; //natezenie swiatla
 GLfloat lightDif[] = {0.7, 0.7, 0.7, 1.0};
-GLfloat lightPos[] = {0, 300, 0.0, 1.0};  ///defauktowo pierwszy param na 100 drugi na 200
+GLfloat lightPos[] = {0, 300, 0.0, 1.0};  ///defaultowo pierwszy param na 100 drugi na 200
 GLfloat lightSpec[] = {1, 1, 1, 1};
 
 
@@ -52,9 +52,9 @@ void setupScene(void) {
 
     /* Aktywacja każdej tekstury po kolei i ładowanie z plików TGA */
 	glBindTexture(GL_TEXTURE_2D, tex[0]);
-	LoadTGAMipmap("texture.tga");   //PATH TO TEXTURE
+	LoadTGAMipmap("C:\\Users\\Wojtek\\Documents\\GitHub\\Eurobusiness-GLUT3dGame\\Eurobusiness\\scene_tex.tga");   //PATH TO TEXTURE def: scene_tex.tga
 	glBindTexture(GL_TEXTURE_2D, tex[1]);
-	LoadTGAMipmap("h_tex.tga");   //PATH TO TEXTURE
+	LoadTGAMipmap("C:\\Users\\Wojtek\\Documents\\GitHub\\Eurobusiness-GLUT3dGame\\Eurobusiness\\h_tex.tga");   //PATH TO TEXTURE  def: h_tex.tga
 
 	/* W³¹czenie oœwietlenia */
 	glEnable(GL_LIGHTING);
