@@ -22,8 +22,51 @@ GLuint tex[2];	/* tekstura */
 
 //@TODO
 //Dorobić pola na planszy
-  Field pfields[] = { Field(1,"Start",90,3,90, 90,3,97, 0,-1)
-                        };
+  Field pfields[] = { Field("Start",86,3,83, 86,3,90, 0,-1),
+                      Field("Saloniki",64,3,84, 64,3,91, 0,-1),
+                      Field("SzansaN1",48,3,84, 48,3,91, 0,-1),
+                      Field("Ateny",32,3,84, 32,3,91, 0,-1),
+                      Field("Parking",16,3,84, 16,3,91, 0,-1),
+                      Field("Koleje Pld.",0,3,84,  0,3,91, 0,-1),
+                      Field("Neapol",-16,3,84, -16,3,91, 0,-1),
+                      Field("SzansaR1",-32,3,84, -32,3,91, 0,-1),
+                      Field("Mediolan",-48,3,84, -48,3,91, 0,-1),
+                      Field("Rzym",-64,3,84, -64,3,91, 0,-1),
+                      Field("Wiezienie",-84,3,80, -84,3,87, 0,-1),
+
+
+                      Field("Barcelona",-86,3,60, -86,3,67, 0,-1),
+                      Field("Elektrownie",-86,3,44, -86,3,51, 0,-1),
+                      Field("Sewilla",-86,3,28, -86,3,35, 0,-1),
+                      Field("Madryt",-86,3,12, -86,3,19, 0,-1),
+                      Field("Koleje Zach.",-86,3,-4, -86,3,3, 0,-1),
+                      Field("Liverpool",-86,3,-20, -86,3,-13, 0,-1),
+                      Field("SzansaN2",-86,3,-36, -86,3,-29, 0,-1),
+                      Field("Glasgow",-86,3,-52, -86,3,-45, 0,-1),
+                      Field("Londyn",-86,3,-68, -86,3,-61, 0,-1),
+                      Field("Parking Darmowy",-86,3,-92, -86,3,-85, 0,-1),
+
+                      Field("Rotterdam",-64,3,-92, -64,3,-85, 0,-1),
+                      Field("SzansaR2",-48,3,-92, -48,3,-85, 0,-1),
+                      Field("Bruksela",-32,3,-92, -32,3,-85, 0,-1),
+                      Field("Amsterdam",-16,3,-92, -16,3,-85, 0,-1),
+                      Field("Koleje Pln",0,3,-92,   0,3,-85, 0,-1),
+                      Field("Malmo",16,3,-92,  16,3,-85, 0,-1),
+                      Field("Goteborg",32,3,-92,  32,3,-85, 0,-1),
+                      Field("Wodociagi",48,3,-92,  48,3,-85, 0,-1),
+                      Field("Sztokholm",64,3,-92,  64,3,-85, 0,-1),
+                      Field("Do Wiezienia",86,3,-90,  86,3,-83, 0,-1),
+
+                      Field("Frankfurt",86,3,-68, 86,3,-61, 0,-1),
+                      Field("Kolonie",86,3,-52, 86,3,-45, 0,-1),
+                      Field("SzansaN3",86,3,-36, 86,3,-29, 0,-1),
+                      Field("Bonn",86,3,-20, 86,3,-13, 0,-1),
+                      Field("Koleje Wsch.",86,3,-4, 86,3,3, 0,-1),
+                      Field("SzansaR3",86,3,12, 86,3,19, 0,-1),
+                      Field("Insbruck",86,3,28, 86,3,35, 0,-1),
+                      Field("Podatek od wzbogacenia",86,3,44, 86,3,51, 0,-1),
+                      Field("Wieden",86,3,60, 86,3,67, 0,-1)
+                      };
 
     Player ptab[2]= { Player(1,"Player1",START_CASH, pfields[0].p1_position_x, 3.0, pfields[0].p1_position_z,true),
                   Player(2,"Player2",START_CASH, pfields[0].p2_position_x,3.0,pfields[0].p2_position_z ,false)
