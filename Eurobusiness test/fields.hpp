@@ -1,5 +1,6 @@
 #ifndef FIELDS_HPP_INCLUDED
 #define FIELDS_HPP_INCLUDED
+#include<vector>
 
 using namespace std;
 class Field
@@ -30,12 +31,13 @@ public:
         this->p1_position_z=p1_position_z;
 
         this->p2_position_x=p2_position_x;
-        this->p2_position_y=p2_position_x;
-        this->p2_position_z=p2_position_x;
+        this->p2_position_y=p2_position_y;
+        this->p2_position_z=p2_position_z;
 
         this->prize=prize;
         this->owner=owner;
     }
+
 };
 
 

@@ -9,8 +9,10 @@
 #include <stdio.h>
 #include <gl/gl.h>
 #include <gl/glu.h>
+#include <iostream>
 
 #include "Targa.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Procedura ³aduje plik o podanej nazwie
@@ -19,6 +21,7 @@
 // Jeœli by³ b³¹d - zwraca NULL
 GLubyte *LoadTGAImage(char *filename, TARGAINFO *info)
 {
+  //  puts(filename);
 	GLubyte	TGAHeader[12]={0,0,2,0,0,0,0,0,0,0,0,0};	// Nag³ówek TGA bez kompresji
 	GLubyte	TGACompare[12];			// Tu siê za³aduje dane z pliku
 	GLubyte	Header[6];			// Pierwsze potrzebne 6 bajtów z pliku
@@ -63,6 +66,8 @@ GLubyte *LoadTGAImage(char *filename, TARGAINFO *info)
 
 		fclose(plik);
 	}
+	else
+        std::cout << "Brak pliku image" << std::endl;
 
 	return(Bits);
 }

@@ -4,6 +4,7 @@
 
 #include <string>
 #include <iostream>
+#include "fields.hpp"
 
 
 using namespace std;
@@ -18,6 +19,7 @@ public:
     GLfloat position_y;
     GLfloat position_z;
     bool is_my_turn;
+    int im_on_field;
 
 Player(int id, string name, float cash, GLfloat position_x, GLfloat position_y, GLfloat position_z, bool is_my_turn)
 {
@@ -28,18 +30,25 @@ Player(int id, string name, float cash, GLfloat position_x, GLfloat position_y, 
     this->position_y=position_y;
     this->position_z=position_z;
     this->is_my_turn=is_my_turn;
+    im_on_field=0;
 }
 
 void print_position(string player_desc)
 {
-    cout << "Dane po ruchu" << endl;
     cout << player_desc << endl;
     cout << "x = " << position_x << endl;
-    cout << "y = " << position_y << endl;
     cout << "z = " << position_z << endl;
     cout << endl;
 }
 };
+
+
+
+
+
+
+
+
 
 
 #endif // PLAYER_HPP_INCLUDED

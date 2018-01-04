@@ -1,9 +1,15 @@
 #ifndef ROUND_HPP_INCLUDED
 #define ROUND_HPP_INCLUDED
-#include "Dice.hpp"
+
 #include <iostream>
-#include "Player.hpp"
+#include "Dice.hpp"
 #include<windows.h>
+#include <vector>
+#include "fields.hpp"
+
+//@TODO
+//przesuwac pionki wzgledem liczby wyrzuconych oczek na odpowiednie miejsca okreslone w klasie pola.
+//np pionek1 wylosowal 6 na kostce, idzie i trafia na pole 16, wiec zmienia swoja pozycje na pozycje zapisana w obiekcie Pole o id 16 i w tym id sa wspolrzedne gdzie powinien sie znajdowac ow pionek
 
 using namespace std;
 
@@ -12,6 +18,7 @@ bool is_game_loaded=false;
 bool camera_move=false;
 
 //0=player1    1=player2
+
 void print_player_info(Dice d1,Player ptab[], int player, string desc)
 {
      //player1
@@ -36,31 +43,30 @@ void print_player_info(Dice d1,Player ptab[], int player, string desc)
             cout << "####################################################" << endl << endl;
     }
 
+
 }
+
+void print_players_position(Player ptab[])
+{
+     ptab[0].print_position("Gracz1 kulka");
+     ptab[1].print_position("Gracz2 kwadrat");
+     cout << "p1 is my turn= " << ptab[0].is_my_turn << endl;
+}
+
 
 void move_player(Player ptab[], int player_number, int n_numbers_on_dice)
 {
-        //poruszanie. Kazde pole ma 16 "Krokow"
-        int steps_to_field = 5;
-        for(int i=0; i<n_numbers_on_dice; i++)
-        {
-            for(int j=0; j<steps_to_field; j++)
-            {
-                 if(player_number==1)
-                    ptab[0].position_x-=j;
-                 else
-                    ptab[1].position_x-=j;
-            }
-        }
-        ptab[0].print_position("Gracz1 kulka");
-        ptab[1].print_position("Gracz2 kwadrat");
+
+
+
 }
 
-void next_round(Player ptab[])
+void next_round(Player ptab[], Field pfields[])
 {
-    system("cls");
-        Dice d1;
-        d1.throw_dice();
+
+
+    Dice d1;
+    d1.throw_dice();
 
     if(is_game_loaded==false)
     {
@@ -73,7 +79,7 @@ void next_round(Player ptab[])
     else
     {
         string p_desc = "Gracz1 kulka";
-        cout << "p1 is my turn= " << ptab[0].is_my_turn << endl;
+
         if(ptab[0].is_my_turn==true)
         {
             //tura gracza1
