@@ -219,7 +219,7 @@ void draw_objects_on_scene(Player ptab[])
 		glScalef(3.0, 3., 3); //gracz1
 		glutSolidSphere(1,30,30);
 	glPopMatrix();
-	//glRotatef(100, 0, 1, 0);
+
 
 	glPushMatrix();
 		glTranslatef(ptab[1].position_x, ptab[1].position_y, ptab[1].position_z);
@@ -227,10 +227,6 @@ void draw_objects_on_scene(Player ptab[])
 		glScalef(5.0, 5.0, 5.0); //gracz2
 		glutSolidCube(1);
 	glPopMatrix();
-	//glRotatef(90, 0, 1, 0);
-
-//print_players_position(ptab);
-	next_round(ptab,pfields);
 
 }
 
@@ -305,6 +301,7 @@ void KeyFunc(unsigned char key, int x, int y) {
     {
        camera_move=false;
        glutPostRedisplay();
+       next_round(ptab,pfields);
     }
     if(key == 0x1B)		exit(0);
 }

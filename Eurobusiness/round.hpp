@@ -19,15 +19,17 @@ bool camera_move=false;
 
 //0=player1    1=player2
 
-void print_player_info(Dice d1,Player ptab[], int player, string desc)
+void print_player_info(Dice d1, Player ptab[], Field pfields[], int player)
 {
+    system("cls");
      //player1
     if(player==0)
     {
             cout << "####################################################" << endl;
-            cout << "## Tura gracza " << desc  << endl;
+            cout << "## Tura gracza Gracz1 kula" << endl;
             cout << "## Wyrzucono: " << d1.show_dice_result() << "                                   ##" /**/ << endl;
             cout << "## Gotowka: " << ptab[0].cash<< "" <<endl;
+            cout << "## Jestes na polu: " << pfields[ ptab[0].im_on_field ].name<< "" <<endl;
             cout << "##                                                ##" << endl;
             cout << "#####  Wcisnij ENTER aby zakonczyc swoja ture  #####" << endl;
             cout << "####################################################" << endl << endl;
@@ -35,9 +37,10 @@ void print_player_info(Dice d1,Player ptab[], int player, string desc)
     else
     {
             cout << "####################################################" << endl;
-            cout << "## Tura gracza " << desc  << endl;
+            cout << "## Tura gracza Gracz2 kwadrat" << endl;
             cout << "## Wyrzucono: " << d1.show_dice_result() << "                                   ##" /**/ << endl;
-            cout << "## Gotowka: " << ptab[1].cash<< "" <<endl;
+            cout << "## Gotowka: " << ptab[1].cash << "" <<endl;
+            cout << "## Jestes na polu: " << pfields[ ptab[1].im_on_field ].name << "" <<endl;
             cout << "##                                                ##" << endl;
             cout << "#####  Wcisnij ENTER aby zakonczyc swoja ture  #####" << endl;
             cout << "####################################################" << endl << endl;
@@ -76,7 +79,6 @@ void move_player(Player ptab[], Field pfields[], int player_number, int n_number
 void next_round(Player ptab[], Field pfields[])
 {
     Dice d1;
-    d1.throw_dice();
 
     if(is_game_loaded==false)
     {
@@ -88,22 +90,21 @@ void next_round(Player ptab[], Field pfields[])
     }
     else
     {
-        string p_desc = "Gracz1 kulka";
-
         if(ptab[0].is_my_turn==true)
         {
             //tura gracza1
+            d1.throw_dice();
             move_player(ptab, pfields, 0, d1.show_dice_result());
-            print_player_info(d1,ptab, 0, p_desc);
+            print_player_info(d1, ptab, pfields, 0);
 
             ptab[0].is_my_turn=false;
         }
         else
         {
-            string p_desc = "Gracz2 kwadrat";
             ///tura gracza 2
-            move_player(ptab, pfields, 1, d1.show_dice_result());
-            print_player_info(d1,ptab,1, p_desc);
+             d1.throw_dice();
+             move_player(ptab, pfields, 1, d1.show_dice_result());
+             print_player_info(d1, ptab, pfields, 1);
 
             ptab[0].is_my_turn=true;
         }
