@@ -54,17 +54,27 @@ void print_players_position(Player ptab[])
 }
 
 
-void move_player(Player ptab[], int player_number, int n_numbers_on_dice)
+void move_player(Player ptab[], Field pfields[], int player_number, int n_numbers_on_dice)
 {
-
-
-
+    int next_field_calc = 0;
+    if(player_number==0)
+    {
+       next_field_calc = (ptab[0].im_on_field + n_numbers_on_dice)%40; //wyznacz nastepne pole
+       ptab[0].position_x = pfields[next_field_calc].p1_position_x; //przesun na wspolrzedne w tym polu
+       ptab[0].position_z = pfields[next_field_calc].p1_position_z;
+       ptab[0].im_on_field =  next_field_calc;  ///zaktualizuj pole im_on_field gracza
+    }
+   else
+   {
+        next_field_calc = (ptab[1].im_on_field + n_numbers_on_dice)%40; //wyznacz nastepne pole
+        ptab[1].position_x = pfields[next_field_calc].p2_position_x;
+        ptab[1].position_z = pfields[next_field_calc].p2_position_z;
+        ptab[1].im_on_field =  next_field_calc;
+   }
 }
 
 void next_round(Player ptab[], Field pfields[])
 {
-
-
     Dice d1;
     d1.throw_dice();
 
@@ -83,7 +93,7 @@ void next_round(Player ptab[], Field pfields[])
         if(ptab[0].is_my_turn==true)
         {
             //tura gracza1
-            move_player(ptab,1,d1.show_dice_result());
+            move_player(ptab, pfields, 0, d1.show_dice_result());
             print_player_info(d1,ptab, 0, p_desc);
 
             ptab[0].is_my_turn=false;
@@ -92,7 +102,7 @@ void next_round(Player ptab[], Field pfields[])
         {
             string p_desc = "Gracz2 kwadrat";
             ///tura gracza 2
-            move_player(ptab,2,d1.show_dice_result());
+            move_player(ptab, pfields, 1, d1.show_dice_result());
             print_player_info(d1,ptab,1, p_desc);
 
             ptab[0].is_my_turn=true;
