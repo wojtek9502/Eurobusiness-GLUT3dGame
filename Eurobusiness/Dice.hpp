@@ -1,8 +1,8 @@
 #ifndef DICE_HPP_INCLUDED
 #define DICE_HPP_INCLUDED
 #include<ctime>
-#include<ios>
 #include<iostream>
+#include<windows.h>
 
 
 class Dice
@@ -11,12 +11,15 @@ private:
     int number;
 
 public:
-    Dice() {};
+    Dice()
+    {
+
+    };
 
     void throw_dice()
     {
         srand(time(NULL));
-        number= 1 + rand()%6;
+        number= (1 + rand()%1000) %6 + 1 ;
     }
 
     int show_dice_result()

@@ -6,6 +6,7 @@
 #include<windows.h>
 #include <vector>
 #include "fields.hpp"
+#include "buying_mechanic.hpp"
 
 //@TODO
 //przesuwac pionki wzgledem liczby wyrzuconych oczek na odpowiednie miejsca okreslone w klasie pola.
@@ -78,7 +79,6 @@ void move_player(Player ptab[], Field pfields[], int player_number, int n_number
 
 void next_round(Player ptab[], Field pfields[])
 {
-    Dice d1;
 
     if(is_game_loaded==false)
     {
@@ -93,18 +93,22 @@ void next_round(Player ptab[], Field pfields[])
         if(ptab[0].is_my_turn==true)
         {
             //tura gracza1
+            Dice d1;
             d1.throw_dice();
             move_player(ptab, pfields, 0, d1.show_dice_result());
             print_player_info(d1, ptab, pfields, 0);
+            buy_field(ptab, 0, pfields, ptab[0].im_on_field);
 
             ptab[0].is_my_turn=false;
         }
         else
         {
             ///tura gracza 2
-             d1.throw_dice();
-             move_player(ptab, pfields, 1, d1.show_dice_result());
-             print_player_info(d1, ptab, pfields, 1);
+             Dice d2;
+             d2.throw_dice();
+             move_player(ptab, pfields, 1, d2.show_dice_result());
+             print_player_info(d2, ptab, pfields, 1);
+             buy_field(ptab, 1, pfields, ptab[1].im_on_field);
 
             ptab[0].is_my_turn=true;
         }
