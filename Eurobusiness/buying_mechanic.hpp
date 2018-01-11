@@ -5,16 +5,21 @@
 
 void buy_field(Player ptab[], int player_number, Field pfields[], int field_number)
 {
-
+    player_number=(player_number+1)%2;
+    cout << "  player number= " << player_number+1 << " field_name=" << pfields[field_number].name << endl;
+        pfields[field_number].owner=player_number;  //przypisz miasto do gracza1
+        ptab[player_number].cash -= pfields[field_number].prize;  //odejmij kase
 }
 
-void check_buy_field(Player ptab[], int player_number, Field pfields[], int field_number)
+bool check_buy_field(Player ptab[], int player_number, Field pfields[], int field_number)
 {
-
-        if(pfields[field_number].owner==-2  || ptab[player_number].cash < pfields[field_number].prize)
-            cout << "Nie mozesz kupic tego pola" << endl;
-        else if(pfields[field_number].owner==-1)
-            cout << "Wcisnij 't' aby kupic to pole" << endl;
+        if(pfields[field_number].owner==-2 ||
+           pfields[field_number].owner== 1 ||
+           pfields[field_number].owner== 0 ||
+           ptab[player_number].cash < pfields[field_number].prize)
+            return false;
+      if(pfields[field_number].owner==-1)
+            return true;
 }
 
 

@@ -50,6 +50,7 @@
 		<Unit filename="Player.hpp" />
 		<Unit filename="Targa.cpp" />
 		<Unit filename="Targa.h" />
+		<Unit filename="buying_mechanic.hpp" />
 		<Unit filename="fields.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="round.hpp" />

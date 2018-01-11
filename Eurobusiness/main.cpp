@@ -15,6 +15,7 @@
 #define ANIM_FPS 40	/* Docelowa liczba ramek animacji na sekundê */
 #define WINDOW_SIZE_X 800
 #define WINDOW_SIZE_Y 600
+#define FIELD_N 40
 
 /* Dane globalne (animacja) */
 GLuint tex[1];	/* tekstura */
@@ -24,50 +25,50 @@ GLuint tex[1];	/* tekstura */
 //@TODO
 //Dorobić pola na planszy.
 //Ostatni param: -1 do kupienia, -2 nie mozna kupic, 0 nalezy do gracza1, 1 nalezy do gracza2
-  Field pfields[] = { Field("Start",86,3,83, 86,3,90, 0,-2),
-                      Field("Saloniki",64,3,84, 64,3,91, 0,-1),
+  Field pfields[] = { Field("Start",86,3,83, 86,3,90, 100,-2),
+                      Field("Saloniki",64,3,84, 64,3,91, 100,-1),
                       Field("SzansaN1",48,3,84, 48,3,91, 0,-2),
-                      Field("Ateny",32,3,84, 32,3,91, 0,-1),
-                      Field("Parking",16,3,84, 16,3,91, 0,-2),
-                      Field("Koleje Pld.",0,3,84,  0,3,91, 0,-1),
-                      Field("Neapol",-16,3,84, -16,3,91, 0,-1),
+                      Field("Ateny",32,3,84, 32,3,91, 100,-1),
+                      Field("Parking",16,3,84, 16,3,91, 400,-2),  //odejmuje 400
+                      Field("Koleje Pld.",0,3,84,  0,3,91, 200,-1),
+                      Field("Neapol",-16,3,84, -16,3,91, 300,-1),
                       Field("SzansaR1",-32,3,84, -32,3,91, 0,-2),
-                      Field("Mediolan",-48,3,84, -48,3,91, 0,-1),
-                      Field("Rzym",-64,3,84, -64,3,91, 0,-1),
+                      Field("Mediolan",-48,3,84, -48,3,91, 300,-1),
+                      Field("Rzym",-64,3,84, -64,3,91, 300,-1),
                       Field("Wiezienie",-84,3,80, -84,3,87, 0,-2),
 
 
-                      Field("Barcelona",-86,3,60, -86,3,67, 0,-1),
-                      Field("Elektrownie",-86,3,44, -86,3,51, 0,-1),
-                      Field("Sewilla",-86,3,28, -86,3,35, 0,-1),
-                      Field("Madryt",-86,3,12, -86,3,19, 0,-1),
-                      Field("Koleje Zach.",-86,3,-4, -86,3,3, 0,-1),
-                      Field("Liverpool",-86,3,-20, -86,3,-13, 0,-1),
+                      Field("Barcelona",-86,3,60, -86,3,67, 350,-1),
+                      Field("Elektrownie",-86,3,44, -86,3,51, 200,-1),
+                      Field("Sewilla",-86,3,28, -86,3,35, 350,-1),
+                      Field("Madryt",-86,3,12, -86,3,19, 350,-1),
+                      Field("Koleje Zach.",-86,3,-4, -86,3,3, 200,-1),
+                      Field("Liverpool",-86,3,-20, -86,3,-13, 400,-1),
                       Field("SzansaN2",-86,3,-36, -86,3,-29, 0,-2),
-                      Field("Glasgow",-86,3,-52, -86,3,-45, 0,-1),
-                      Field("Londyn",-86,3,-68, -86,3,-61, 0,-1),
+                      Field("Glasgow",-86,3,-52, -86,3,-45, 400,-1),
+                      Field("Londyn",-86,3,-68, -86,3,-61, 400,-1),
                       Field("Parking Darmowy",-86,3,-92, -86,3,-85, 0,-2),
 
-                      Field("Rotterdam",-64,3,-92, -64,3,-85, 0,-1),
+                      Field("Rotterdam",-64,3,-92, -64,3,-85, 450,-1),
                       Field("SzansaR2",-48,3,-92, -48,3,-85, 0,-2),
-                      Field("Bruksela",-32,3,-92, -32,3,-85, 0,-1),
-                      Field("Amsterdam",-16,3,-92, -16,3,-85, 0,-1),
-                      Field("Koleje Pln",0,3,-92,   0,3,-85, 0,-1),
-                      Field("Malmo",16,3,-92,  16,3,-85, 0,-1),
-                      Field("Goteborg",32,3,-92,  32,3,-85, 0,-1),
-                      Field("Wodociagi",48,3,-92,  48,3,-85, 0,-1),
-                      Field("Sztokholm",64,3,-92,  64,3,-85, 0,-1),
+                      Field("Bruksela",-32,3,-92, -32,3,-85, 450,-1),
+                      Field("Amsterdam",-16,3,-92, -16,3,-85, 450,-1),
+                      Field("Koleje Pln",0,3,-92,   0,3,-85, 200,-1),
+                      Field("Malmo",16,3,-92,  16,3,-85, 475,-1),
+                      Field("Goteborg",32,3,-92,  32,3,-85, 475,-1),
+                      Field("Wodociagi",48,3,-92,  48,3,-85, 200,-1),
+                      Field("Sztokholm",64,3,-92,  64,3,-85, 475,-1),
                       Field("Do Wiezienia",86,3,-90,  86,3,-83, 0,-2),
 
-                      Field("Frankfurt",86,3,-68, 86,3,-61, 0,-1),
-                      Field("Kolonie",86,3,-52, 86,3,-45, 0,-1),
+                      Field("Frankfurt",86,3,-68, 86,3,-61, 500,-1),
+                      Field("Kolonie",86,3,-52, 86,3,-45, 500,-1),
                       Field("SzansaN3",86,3,-36, 86,3,-29, 0,-2),
-                      Field("Bonn",86,3,-20, 86,3,-13, 0,-1),
-                      Field("Koleje Wsch.",86,3,-4, 86,3,3, 0,-1),
+                      Field("Bonn",86,3,-20, 86,3,-13, 500,-1),
+                      Field("Koleje Wsch.",86,3,-4, 86,3,3, 200,-1),
                       Field("SzansaR3",86,3,12, 86,3,19, 0,-2),
-                      Field("Insbruck",86,3,28, 86,3,35, 0,-1),
+                      Field("Insbruck",86,3,28, 86,3,35, 500,-1),
                       Field("Podatek od wzbogacenia",86,3,44, 86,3,51, 0,-2),
-                      Field("Wieden",86,3,60, 86,3,67, 0,-1)
+                      Field("Wieden",86,3,60, 86,3,67, 500,-1)
                       };
 
     Player ptab[2]= { Player(1,"Player1",START_CASH, pfields[0].p1_position_x, 3.0, pfields[0].p1_position_z,true),
@@ -282,15 +283,15 @@ void ChangeSize(int w, int h) {
 
 void KeyFunc(unsigned char key, int x, int y) {
     //rotacja gora dol
-    //if(lookA <=15) lookA=15;
-    //if(lookA >=75) lookA=75;
+    if(lookA <=15) lookA=15;
+    if(lookA >=75) lookA=75;
 
-    if(key=='w' || key=='W')   { camera_move=true; lookA += 5; glutPostRedisplay();}
-    if(key=='s' || key=='S')   { camera_move=true;  lookA -= 5; glutPostRedisplay(); }
+    if(key=='w')   { camera_move=true; lookA += 5; glutPostRedisplay();}
+    if(key=='s')   { camera_move=true;  lookA -= 5; glutPostRedisplay(); }
    // cout << "Kat kamery gora dol= " << lookA << endl;
 
     //rotacja
-    if(key=='r' || key=='R')
+    if(key=='r')
     {
         angle-=4;
         camera_move=true;
@@ -300,19 +301,34 @@ void KeyFunc(unsigned char key, int x, int y) {
     /* Odrysowanie sceny: */
     if(key==13)
     {
+
        camera_move=false;
-       glutPostRedisplay();
        next_round(ptab,pfields);
+       glutPostRedisplay();
     }
 
     //klawisz potwierdzenia "t" zakupu pola
     if (key ==  0x74)
     {
-        cout << "klawisz t" << endl;
-        if(ptab[0].is_my_turn==true)
-            buy_field(ptab,0,pfields,ptab[0].im_on_field);
+
+        if(ptab[0].is_my_turn==true) //kupowanie dla gracza1
+        {
+
+             if(check_buy_field(ptab,0,pfields,ptab[0].im_on_field)==true) //czy moze kupic
+             {
+                buy_field(ptab,0,pfields,ptab[0].im_on_field);
+                cout << "kupil gracz1" << endl;
+             }
+        }
         else
-            buy_field(ptab,1,pfields,ptab[1].im_on_field);
+        {
+            if(check_buy_field(ptab,1,pfields,ptab[1].im_on_field)==true)
+             {
+                buy_field(ptab,1,pfields,ptab[1].im_on_field);
+                cout << "kupil gracz2" << endl;
+             }
+        }
+
 
         glutPostRedisplay();
     }
@@ -326,7 +342,6 @@ void KeyFunc(unsigned char key, int x, int y) {
 
 /* Funkcja zegarowa: */
 void ZegarFun(int val) {
-
 	/* Ponowne wystartowanie zegara: */
 	glutTimerFunc(1000/ANIM_FPS, ZegarFun, 0);
 }
