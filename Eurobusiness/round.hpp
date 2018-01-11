@@ -17,36 +17,26 @@ using namespace std;
 int key;
 bool is_game_loaded=false;
 bool camera_move=false;
-
+//player1=kula player2=kwadrat
 //0=player1    1=player2
 
-void print_player_info(Dice d1, Player ptab[], Field pfields[], int player)
+void print_player_info(Dice d1, Player ptab[], int player_number, Field pfields[], string player_description)
 {
     system("cls");
-     //player1
-    if(player==0)
-    {
             cout << "####################################################" << endl;
-            cout << "## Tura gracza Gracz1 kula" << endl;
+            cout << "## Tura gracza Gracz" << player_number+1 << " " << player_description << endl;    //Nie zmienac na player_number++ !!!
             cout << "## Wyrzucono: " << d1.show_dice_result() << "                                   ##" /**/ << endl;
-            cout << "## Gotowka: " << ptab[0].cash<< "" <<endl;
-            cout << "## Jestes na polu: " << pfields[ ptab[0].im_on_field ].name<< "" <<endl;
+            cout << "## Gotowka: " << ptab[player_number].cash<< "" <<endl;
+            cout << "## Jestes na polu: " << pfields[ ptab[player_number].im_on_field ].name<< "" <<endl;
             cout << "##                                                ##" << endl;
-            cout << "#####  Wcisnij ENTER aby zakonczyc swoja ture  #####" << endl;
             cout << "####################################################" << endl << endl;
-    }
-    else
-    {
-            cout << "####################################################" << endl;
-            cout << "## Tura gracza Gracz2 kwadrat" << endl;
-            cout << "## Wyrzucono: " << d1.show_dice_result() << "                                   ##" /**/ << endl;
-            cout << "## Gotowka: " << ptab[1].cash << "" <<endl;
-            cout << "## Jestes na polu: " << pfields[ ptab[1].im_on_field ].name << "" <<endl;
-            cout << "##                                                ##" << endl;
-            cout << "#####  Wcisnij ENTER aby zakonczyc swoja ture  #####" << endl;
-            cout << "####################################################" << endl << endl;
-    }
 
+            check_buy_field(ptab,player_number,pfields,ptab[player_number].im_on_field);
+
+}
+
+void print_owned_field( Player ptab[], int player_number, Field pfields[])
+{
 
 }
 
@@ -96,8 +86,7 @@ void next_round(Player ptab[], Field pfields[])
             Dice d1;
             d1.throw_dice();
             move_player(ptab, pfields, 0, d1.show_dice_result());
-            print_player_info(d1, ptab, pfields, 0);
-            buy_field(ptab, 0, pfields, ptab[0].im_on_field);
+            print_player_info(d1, ptab, 0 , pfields, "kula");
 
             ptab[0].is_my_turn=false;
         }
@@ -107,8 +96,7 @@ void next_round(Player ptab[], Field pfields[])
              Dice d2;
              d2.throw_dice();
              move_player(ptab, pfields, 1, d2.show_dice_result());
-             print_player_info(d2, ptab, pfields, 1);
-             buy_field(ptab, 1, pfields, ptab[1].im_on_field);
+             print_player_info(d2, ptab, 1, pfields, "kwadrat");
 
             ptab[0].is_my_turn=true;
         }

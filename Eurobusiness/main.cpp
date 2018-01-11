@@ -10,13 +10,14 @@
 #include <string>
 #include <vector>
 #include "Targa.h"
+#include "buying_mechanic.hpp"
 
 #define ANIM_FPS 40	/* Docelowa liczba ramek animacji na sekundê */
 #define WINDOW_SIZE_X 800
 #define WINDOW_SIZE_Y 600
 
 /* Dane globalne (animacja) */
-GLuint tex[2];	/* tekstura */
+GLuint tex[1];	/* tekstura */
 
   GLfloat angle;	/* K¹t obrotu obiektów wokó³ œrodka sceny (animacja) */
 
@@ -92,13 +93,12 @@ void setupScene(void) {
 	glEnable(GL_TEXTURE_2D);    /* Włączenie teksturowania */
 
    /* Wygenerowanie trzech tzw. "obiektów" dla tekstur */
-	glGenTextures(2, tex);
+	glGenTextures(1, tex);
 
     /* Aktywacja każdej tekstury po kolei i ładowanie z plików TGA */
 	glBindTexture(GL_TEXTURE_2D, tex[0]);
 	LoadTGAMipmap("C:\\Users\\Wojtek\\Documents\\GitHub\\Eurobusiness-GLUT3dGame\\Eurobusiness\\scene_tex.tga");   //PATH TO TEXTURE def: scene_tex.tga
-	glBindTexture(GL_TEXTURE_2D, tex[1]);
-	LoadTGAMipmap("C:\\Users\\Wojtek\\Documents\\GitHub\\Eurobusiness-GLUT3dGame\\Eurobusiness\\h_tex.tga");   //PATH TO TEXTURE  def: h_tex.tga
+
 
 	/* W³¹czenie oœwietlenia */
 	glEnable(GL_LIGHTING);
@@ -282,8 +282,8 @@ void ChangeSize(int w, int h) {
 
 void KeyFunc(unsigned char key, int x, int y) {
     //rotacja gora dol
-    if(lookA <=15) lookA=15;
-    if(lookA >=75) lookA=75;
+    //if(lookA <=15) lookA=15;
+    //if(lookA >=75) lookA=75;
 
     if(key=='w' || key=='W')   { camera_move=true; lookA += 5; glutPostRedisplay();}
     if(key=='s' || key=='S')   { camera_move=true;  lookA -= 5; glutPostRedisplay(); }
@@ -305,7 +305,19 @@ void KeyFunc(unsigned char key, int x, int y) {
        next_round(ptab,pfields);
     }
 
-    //klawisz potwierdzenia
+    //klawisz potwierdzenia "t" zakupu pola
+    if (key ==  0x74)
+    {
+        cout << "klawisz t" << endl;
+        if(ptab[0].is_my_turn==true)
+            buy_field(ptab,0,pfields,ptab[0].im_on_field);
+        else
+            buy_field(ptab,1,pfields,ptab[1].im_on_field);
+
+        glutPostRedisplay();
+    }
+
+
     if(key == 0x1B)		exit(0);
 }
 
