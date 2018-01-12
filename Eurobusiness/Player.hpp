@@ -20,6 +20,7 @@ public:
     GLfloat position_z;
     bool is_my_turn;
     int im_on_field;
+    int prev_field_nr;
 
 Player(int id, string name, float cash, GLfloat position_x, GLfloat position_y, GLfloat position_z, bool is_my_turn)
 {
@@ -31,6 +32,7 @@ Player(int id, string name, float cash, GLfloat position_x, GLfloat position_y, 
     this->position_z=position_z;
     this->is_my_turn=is_my_turn;
     im_on_field=0;
+    prev_field_nr=-1;
 }
 
 void print_position(string player_desc)
