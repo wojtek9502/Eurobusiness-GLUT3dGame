@@ -11,6 +11,7 @@
 #include <vector>
 #include "Targa.h"
 #include "buying_mechanic.hpp"
+#include <windows.h>
 
 #define ANIM_FPS 40	/* Docelowa liczba ramek animacji na sekundê */
 #define WINDOW_SIZE_X 800
@@ -301,8 +302,8 @@ void KeyFunc(unsigned char key, int x, int y) {
     /* Odrysowanie sceny: */
     if(key==13)
     {
-
        camera_move=false;
+       buy_time_end=false;
        next_round(ptab,pfields);
        glutPostRedisplay();
     }
@@ -310,13 +311,12 @@ void KeyFunc(unsigned char key, int x, int y) {
     //klawisz potwierdzenia "t" zakupu pola
     if (key ==  0x74)
     {
-
         if(ptab[0].is_my_turn==true) //kupowanie dla gracza1
         {
 
              if(check_buy_field(ptab,0,pfields,ptab[0].im_on_field)==true) //czy moze kupic
              {
-                buy_field(ptab,0,pfields,ptab[0].im_on_field);
+                buy_field(ptab,0,pfields,ptab[0].im_on_field); //kupowanie
                 cout << "kupil gracz1" << endl;
              }
         }
@@ -329,8 +329,13 @@ void KeyFunc(unsigned char key, int x, int y) {
              }
         }
 
-
+        buy_time_end=true; //koniec kupowania mozna przejsc do nast rundy
         glutPostRedisplay();
+    }
+
+    if(key='n')
+    {
+        buy_time_end=true;
     }
 
 

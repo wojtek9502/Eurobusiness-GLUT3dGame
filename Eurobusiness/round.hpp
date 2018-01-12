@@ -37,7 +37,7 @@ void print_owned_field(int player_number, Field pfields[])
 void print_player_info(Dice d1, Player ptab[], int player_number, Field pfields[], string player_description)
 {
     system("cls");
-    if(ptab[0].is_my_turn==true) cout << "Tula gracza1"; else cout <<"tura gracza2";
+    if(ptab[0].is_my_turn==true) cout << "Tura gracza1" << endl; else cout <<"tura gracza2" << endl;
             cout << "####################################################" << endl;
             cout << "## Tura gracza Gracz" << player_number+1 << " " << player_description << endl;    //Nie zmienac na player_number++ !!!
             cout << "## Wyrzucono: " << d1.show_dice_result() << endl;
@@ -102,11 +102,17 @@ void next_round(Player ptab[], Field pfields[])
             d1.throw_dice();
             move_player(ptab, pfields, 0, d1.show_dice_result());
             print_player_info(d1, ptab, 0 , pfields, "kula");
-             print_owned_field(0,pfields);
+            print_owned_field(0,pfields);
+
+
+            cout << "Tu wykrywanie nacisniecia klawisza kupowania" << endl;
 
             ptab[0].is_my_turn=false;
             cout << "Koniec tury gracza1" << endl;
             cout << "Start tury gracza2" << endl;
+
+
+
         }
         else
         {
@@ -117,10 +123,14 @@ void next_round(Player ptab[], Field pfields[])
              print_player_info(d2, ptab, 1, pfields, "kwadrat");
              print_owned_field(1,pfields);
 
+             cout << "Tu wykrywanie nacisniecia klawisza kupowania" << endl;
 
-            ptab[0].is_my_turn=true;
-            cout << "Koniec tury gracza2" << endl;
-            cout << "Start tury gracza1" << endl;
+              ptab[0].is_my_turn=true;
+              cout << "Koniec tury gracza2" << endl;
+              cout << "Start tury gracza1" << endl;
+
+
+
         }
     }
 }
