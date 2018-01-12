@@ -11,7 +11,7 @@
 #include <vector>
 #include "Targa.h"
 #include "buying_mechanic.hpp"
-#include <windows.h>
+
 
 #define ANIM_FPS 40	/* Docelowa liczba ramek animacji na sekundê */
 #define WINDOW_SIZE_X 800
@@ -303,7 +303,6 @@ void KeyFunc(unsigned char key, int x, int y) {
     if(key==13)
     {
        camera_move=false;
-       buy_time_end=false;
        next_round(ptab,pfields);
        glutPostRedisplay();
     }

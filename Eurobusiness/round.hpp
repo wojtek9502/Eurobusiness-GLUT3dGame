@@ -7,6 +7,7 @@
 #include <vector>
 #include "fields.hpp"
 #include "buying_mechanic.hpp"
+#include <windows.h>
 
 //@TODO
 //przesuwac pionki wzgledem liczby wyrzuconych oczek na odpowiednie miejsca okreslone w klasie pola.
@@ -42,14 +43,15 @@ void print_player_info(Dice d1, Player ptab[], int player_number, Field pfields[
             cout << "## Tura gracza Gracz" << player_number+1 << " " << player_description << endl;    //Nie zmienac na player_number++ !!!
             cout << "## Wyrzucono: " << d1.show_dice_result() << endl;
             cout << "## Gotowka: " << ptab[player_number].cash<< "" <<endl;
-            cout << "## Jestes na polu: " << pfields[ ptab[player_number].im_on_field ].name<< "" <<endl;
+            cout << "## Jestes na polu: " << pfields[ ptab[player_number].im_on_field ].name
+                    << "Koszt: " << pfields[ ptab[player_number].im_on_field ].prize <<endl;
             cout << "##                                                  " << endl;
             cout << "####################################################" << endl << endl;
 
             if(check_buy_field(ptab,player_number,pfields,ptab[player_number].im_on_field)==false)
                 cout << "Nie mozesz kupic tego pola" << endl;
             else
-                cout << "Wcisnij 't' aby kupic to pole" << endl;
+                cout << "Wcisnij 'shift' aby kupic to pole" << endl;
 
 }
 
@@ -105,12 +107,19 @@ void next_round(Player ptab[], Field pfields[])
             print_owned_field(0,pfields);
 
 
-            cout << "Tu wykrywanie nacisniecia klawisza kupowania" << endl;
+            if(GetAsyncKeyState(VK_SHIFT))
+            {
+                if(check_buy_field(ptab,0,pfields,ptab[0].im_on_field)==true) //czy moze kupic
+                 {
+                    buy_field(ptab,0,pfields,ptab[0].im_on_field); //kupowanie
+
+                 }
+            }
+
 
             ptab[0].is_my_turn=false;
             cout << "Koniec tury gracza1" << endl;
-            cout << "Start tury gracza2" << endl;
-
+              cout << "Start tury gracza2" << endl;
 
 
         }
@@ -123,12 +132,19 @@ void next_round(Player ptab[], Field pfields[])
              print_player_info(d2, ptab, 1, pfields, "kwadrat");
              print_owned_field(1,pfields);
 
-             cout << "Tu wykrywanie nacisniecia klawisza kupowania" << endl;
 
-              ptab[0].is_my_turn=true;
+
+             if(GetAsyncKeyState(VK_SHIFT))
+            {
+                if(check_buy_field(ptab,1,pfields,ptab[1].im_on_field)==true) //czy moze kupic
+                 {
+                    buy_field(ptab,1,pfields,ptab[1].im_on_field); //kupowanie
+
+                 }
+            }
+             ptab[0].is_my_turn=true;
               cout << "Koniec tury gracza2" << endl;
               cout << "Start tury gracza1" << endl;
-
 
 
         }
