@@ -25,8 +25,9 @@ bool camera_move=false;
 void check_win(Player ptab[])
 {
     cout << "Sprawdzam wygrana gracza" << endl;
-    for(int i=0; i>2; i++)
-    {
+    cout << "g1: " << ptab[0].cash << endl;
+    cout << "g2: " << ptab[1].cash << endl;
+
         if(ptab[0].cash < 0 )
         {
             system("cls");
@@ -41,7 +42,6 @@ void check_win(Player ptab[])
             cout << "Gracz2 zbankrutowal." << endl << "WYGRYWA GRACZ1" << endl;
             system("pause");
             exit(1);
-        }
     }
 
 }
