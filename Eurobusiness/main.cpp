@@ -78,7 +78,7 @@ GLuint tex[1];	/* tekstura */
 
 
 /* Zmienne pomocnicze */
-GLfloat lookA = 25;	/* K¹t patrzenia w kierunku pionowym */
+GLfloat lookA = 45;	/* K¹t patrzenia w kierunku pionowym */
 
 /* Parametry œwiat³a i materia³ów */
 GLfloat lightAmb[] = {0.6, 0.6, 0.6, 1.0}; //natezenie swiatla
