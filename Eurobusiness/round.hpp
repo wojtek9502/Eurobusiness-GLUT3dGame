@@ -7,7 +7,7 @@
 #include <vector>
 #include "fields.hpp"
 #include "buying_mechanic.hpp"
-#include <windows.h>
+#include "pay.hpp"
 
 //@TODO
 //przesuwac pionki wzgledem liczby wyrzuconych oczek na odpowiednie miejsca okreslone w klasie pola.
@@ -19,8 +19,32 @@ int key;
 bool is_game_loaded=false;
 bool camera_move=false;
 
-//player1=kwadrat player2=kula!!!
+//player1=kula player2=kwadrat!!!
 //0=player1    1=player2
+
+void check_win(Player ptab[])
+{
+    cout << "Sprawdzam wygrana gracza" << endl;
+    for(int i=0; i>2; i++)
+    {
+        if(ptab[0].cash < 0 )
+        {
+            system("cls");
+            cout << "Gracz1 zbankrutowal." << endl << "WYGRYWA GRACZ2" << endl;
+            system("pause");
+            exit(1);
+        }
+
+        if(ptab[1].cash < 0)
+        {
+            system("cls");
+            cout << "Gracz2 zbankrutowal." << endl << "WYGRYWA GRACZ1" << endl;
+            system("pause");
+            exit(1);
+        }
+    }
+
+}
 
 void print_owned_field(int player_number, Field pfields[])
 {
@@ -37,8 +61,6 @@ void print_owned_field(int player_number, Field pfields[])
 
 void print_player_info(Dice d1, Player ptab[], int player_number, Field pfields[], string player_description)
 {
-    system("cls");
-    if(ptab[0].is_my_turn==true) cout << "Tura gracza1" << endl; else cout <<"tura gracza2" << endl;
             cout << "####################################################" << endl;
             cout << "## Tura gracza Gracz" << player_number+1 << " " << player_description << endl;    //Nie zmienac na player_number++ !!!
             cout << "## Wyrzucono: " << d1.show_dice_result() << endl;
@@ -86,6 +108,8 @@ void move_player(Player ptab[], Field pfields[], int player_number, int n_number
 
 void next_round(Player ptab[], Field pfields[])
 {
+    system("cls");
+    check_win(ptab);
 
     if(is_game_loaded==false)
     {
@@ -103,6 +127,7 @@ void next_round(Player ptab[], Field pfields[])
             Dice d1;
             d1.throw_dice();
             move_player(ptab, pfields, 0, d1.show_dice_result());
+            check_field_owner(ptab, 0, pfields, ptab[0].im_on_field);
             print_player_info(d1, ptab, 0 , pfields, "kula");
             print_owned_field(0,pfields);
 
@@ -118,6 +143,7 @@ void next_round(Player ptab[], Field pfields[])
              Dice d2;
              d2.throw_dice();
              move_player(ptab, pfields, 1, d2.show_dice_result());
+             check_field_owner(ptab, 1, pfields, ptab[1].im_on_field);
              print_player_info(d2, ptab, 1, pfields, "kwadrat");
              print_owned_field(1,pfields);
 

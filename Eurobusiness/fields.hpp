@@ -14,13 +14,13 @@ public:
     GLfloat p2_position_y;
     GLfloat p2_position_z;
 
-    float prize;
+    int prize;
     int owner;   ///-1 none, 1 player1, 2 player2
 
     Field( string name,
            GLfloat p1_position_x, GLfloat p1_position_y, GLfloat p1_position_z,
            GLfloat p2_position_x, GLfloat p2_position_y, GLfloat p2_position_z,
-           float prize, int owner)
+           int prize, int owner)
     {
         this->name=name;
 

@@ -53,6 +53,7 @@
 		<Unit filename="buying_mechanic.hpp" />
 		<Unit filename="fields.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="pay.hpp" />
 		<Unit filename="round.hpp" />
 		<Extensions>
 			<code_completion />
