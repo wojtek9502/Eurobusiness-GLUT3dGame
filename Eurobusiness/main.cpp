@@ -307,36 +307,10 @@ void KeyFunc(unsigned char key, int x, int y) {
        glutPostRedisplay();
     }
 
-    //klawisz potwierdzenia "t" zakupu pola
-    if (key ==  0x74)
+    if(key=='t')
     {
-        if(ptab[0].is_my_turn==true) //kupowanie dla gracza1
-        {
-
-             if(check_buy_field(ptab,0,pfields,ptab[0].im_on_field)==true) //czy moze kupic
-             {
-                buy_field(ptab,0,pfields,ptab[0].im_on_field); //kupowanie
-                cout << "kupil gracz1" << endl;
-             }
-        }
-        else
-        {
-            if(check_buy_field(ptab,1,pfields,ptab[1].im_on_field)==true)
-             {
-                buy_field(ptab,1,pfields,ptab[1].im_on_field);
-                cout << "kupil gracz2" << endl;
-             }
-        }
-
-        buy_time_end=true; //koniec kupowania mozna przejsc do nast rundy
-        glutPostRedisplay();
+        buy(ptab,pfields);
     }
-
-    if(key='n')
-    {
-        buy_time_end=true;
-    }
-
 
     if(key == 0x1B)		exit(0);
 }

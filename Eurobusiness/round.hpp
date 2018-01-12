@@ -44,14 +44,14 @@ void print_player_info(Dice d1, Player ptab[], int player_number, Field pfields[
             cout << "## Wyrzucono: " << d1.show_dice_result() << endl;
             cout << "## Gotowka: " << ptab[player_number].cash<< "" <<endl;
             cout << "## Jestes na polu: " << pfields[ ptab[player_number].im_on_field ].name
-                    << "Koszt: " << pfields[ ptab[player_number].im_on_field ].prize <<endl;
+                    << "  Koszt: " << pfields[ ptab[player_number].im_on_field ].prize <<endl;
             cout << "##                                                  " << endl;
             cout << "####################################################" << endl << endl;
 
             if(check_buy_field(ptab,player_number,pfields,ptab[player_number].im_on_field)==false)
                 cout << "Nie mozesz kupic tego pola" << endl;
             else
-                cout << "Wcisnij 'shift' aby kupic to pole" << endl;
+                cout << "Wcisnij 't' aby kupic to pole" << endl;
 
 }
 
@@ -106,20 +106,9 @@ void next_round(Player ptab[], Field pfields[])
             print_player_info(d1, ptab, 0 , pfields, "kula");
             print_owned_field(0,pfields);
 
-
-            if(GetAsyncKeyState(VK_SHIFT))
-            {
-                if(check_buy_field(ptab,0,pfields,ptab[0].im_on_field)==true) //czy moze kupic
-                 {
-                    buy_field(ptab,0,pfields,ptab[0].im_on_field); //kupowanie
-
-                 }
-            }
-
-
             ptab[0].is_my_turn=false;
-            cout << "Koniec tury gracza1" << endl;
-              cout << "Start tury gracza2" << endl;
+           // cout << "Koniec tury gracza1" << endl;
+              //cout << "Start tury gracza2" << endl;
 
 
         }
@@ -133,18 +122,9 @@ void next_round(Player ptab[], Field pfields[])
              print_owned_field(1,pfields);
 
 
-
-             if(GetAsyncKeyState(VK_SHIFT))
-            {
-                if(check_buy_field(ptab,1,pfields,ptab[1].im_on_field)==true) //czy moze kupic
-                 {
-                    buy_field(ptab,1,pfields,ptab[1].im_on_field); //kupowanie
-
-                 }
-            }
              ptab[0].is_my_turn=true;
-              cout << "Koniec tury gracza2" << endl;
-              cout << "Start tury gracza1" << endl;
+              //cout << "Koniec tury gracza2" << endl;
+              //cout << "Start tury gracza1" << endl;
 
 
         }
