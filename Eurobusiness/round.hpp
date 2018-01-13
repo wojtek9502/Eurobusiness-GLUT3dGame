@@ -188,10 +188,10 @@ void check_prison(Player ptab[], int player_number)
 {
     if(ptab[player_number].in_prison==true && ptab[player_number].round_to_freedom!=0)
     {
+        cout << "Jestes w wiezieniu jeszcze przez " <<  ptab[player_number].round_to_freedom << " rund" << endl;
         ptab[player_number].prev_field_nr=9;
         ptab[player_number].im_on_field=9;
         ptab[player_number].round_to_freedom -= 1;
-        cout << "Jestes w wiezieniu jeszcze przez " <<  ptab[player_number].round_to_freedom << " rund" << endl;
     }
     else
     {
