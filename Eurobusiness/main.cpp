@@ -8,9 +8,9 @@
 #include "round.hpp"
 #include "fields.hpp"
 #include <string>
-#include <vector>
 #include "Targa.h"
 #include "buying_mechanic.hpp"
+#include <windows.h>
 
 
 #define ANIM_FPS 40	/* Docelowa liczba ramek animacji na sekundê */
@@ -99,7 +99,7 @@ void setupScene(void) {
 
     /* Aktywacja każdej tekstury po kolei i ładowanie z plików TGA */
 	glBindTexture(GL_TEXTURE_2D, tex[0]);
-	LoadTGAMipmap("C:\\Users\\Wojtek\\Documents\\GitHub\\Eurobusiness-GLUT3dGame\\Eurobusiness\\scene_tex.tga");   //PATH TO TEXTURE def: scene_tex.tga
+	LoadTGAMipmap("scene_tex.tga");   //PATH TO TEXTURE def: scene_tex.tga
 
 
 	/* W³¹czenie oœwietlenia */
@@ -204,16 +204,6 @@ void draw_objects_on_scene(Player ptab[])
 		glVertex3f( 100, -1,  100);
 	glEnd();
 
-/*
-    // STARY OBIEKT PLANSZY
-    glPushMatrix();
-		glTranslatef(0, 0, 0);
-		glColor3f(0, 1, 0);
-		glScalef(200.0, 1, 200); //rozmiary planszy
-		glutSolidCube(1);
-	glPopMatrix();
-	glRotatef(10, 0, 1, 0);
-*/
 
 	//GRACZE
     glPushMatrix();
@@ -325,12 +315,6 @@ void ZegarFun(int val) {
 }
 
 
-
-
-
-
-
-
 /* Funkcja g³ówna */
 int main(int argc, char *argv[]) {
 
@@ -347,14 +331,14 @@ int main(int argc, char *argv[]) {
 	/* Funkcja obs³uguj¹ca klawiaturê */
 	glutKeyboardFunc(KeyFunc);
 
+    PlaySound("sound.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
+
 	/* Ustawienia OpenGL */
 	setupScene();
 	/* Start zegara po raz pierwszy */
 	glutTimerFunc(1000/ANIM_FPS, ZegarFun, 0);
 	/* Wejœcie do g³ównej pêtli programu */
 
-    //vector<Player> players;
-    //players = generate_players(players);
 
 
 	glutMainLoop();

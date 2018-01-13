@@ -251,7 +251,7 @@
 	"Dice.hpp"
 	<iostream>
 
-1515799043 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\main.cpp
+1515804712 source:c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\main.cpp
 	<stdlib.h>
 	<gl/gl.h>
 	<gl/glu.h>
@@ -260,9 +260,9 @@
 	"round.hpp"
 	"fields.hpp"
 	<string>
-	<vector>
 	"Targa.h"
 	"buying_mechanic.hpp"
+	<windows.h>
 
 1514657578 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\setup_scene.hpp
 	"render_scene.hpp"
