@@ -18,7 +18,7 @@ bool check_buy_field(Player ptab[], int player_number, Field pfields[], int fiel
            pfields[field_number].owner== 0 ||
            ptab[player_number].cash < pfields[field_number].prize)
             return false;
-      if(pfields[field_number].owner==-1)
+        if(pfields[field_number].owner==-1)
             return true;
 }
 

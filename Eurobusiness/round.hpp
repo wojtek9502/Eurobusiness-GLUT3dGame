@@ -114,6 +114,26 @@ int calculate_tax(int player_number, Field pfields[])
 
 }
 
+//##########################################################-- Tu mozna dodawac efekty Szans --#########################
+void rand_chance_effect(Player ptab[], int player_number, Field pfields[])
+{
+    int v = rand()%2;
+    switch(v)
+    {
+    case 0:
+        {
+            cout << "Szansa: Otrzymujesz 200" << endl;
+            ptab[player_number].cash+=200;
+        }break;
+    case 1:
+        {
+            int to_pay=calculate_tax(player_number,pfields);
+            cout << "Szansa: Placisz podatek: " << to_pay << endl;
+            ptab[player_number].cash -= to_pay;
+        }break;
+    }
+}
+
 void check_enter_on_special_fields(Player ptab[], int player_number, Field pfields[])
 {
     switch(ptab[player_number].im_on_field)
@@ -140,12 +160,21 @@ void check_enter_on_special_fields(Player ptab[], int player_number, Field pfiel
                ptab[0].cash -= to_pay;
             }break;
 
-        case 10: //wiezienie
-        {
 
-        }
     }
+
+    //wejscie na szanse
+    int field_number = ptab[player_number].im_on_field;
+    if(field_number==2 || field_number==7 ||
+       field_number==17 || field_number==22 ||
+       field_number==33 || field_number==33)
+        {
+            srand(time(NULL));
+            rand_chance_effect(ptab, player_number, pfields);
+        }
+
 }
+
 
 void move_player(Player ptab[], Field pfields[], int player_number, int n_numbers_on_dice)
 {

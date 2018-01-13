@@ -286,7 +286,7 @@
 	<iostream>
 	"round.hpp"
 
-1515807024 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\round.hpp
+1515808961 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\round.hpp
 	<iostream>
 	"Dice.hpp"
 	<windows.h>
@@ -295,7 +295,7 @@
 	"buying_mechanic.hpp"
 	"pay.hpp"
 
-1515803622 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\dice.hpp
+1515809000 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\dice.hpp
 	<ctime>
 	<iostream>
 	<windows.h>
