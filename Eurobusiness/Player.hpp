@@ -21,6 +21,8 @@ public:
     bool is_my_turn;
     int im_on_field;
     int prev_field_nr;
+    bool in_prison;
+    int round_to_freedom;  //liczba rund do wyjscia na wolnosc w przypadku wiezienia
 
 Player(int id, string name, float cash, GLfloat position_x, GLfloat position_y, GLfloat position_z, bool is_my_turn)
 {
@@ -33,6 +35,9 @@ Player(int id, string name, float cash, GLfloat position_x, GLfloat position_y, 
     this->is_my_turn=is_my_turn;
     im_on_field=0;
     prev_field_nr=-1;
+    in_prison=false;
+    round_to_freedom=0;
+
 }
 
 void print_position(string player_desc)

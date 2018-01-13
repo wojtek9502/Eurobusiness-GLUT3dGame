@@ -1,7 +1,6 @@
 #ifndef FIELDS_HPP_INCLUDED
 #define FIELDS_HPP_INCLUDED
-#include<vector>
-
+#include "Player.hpp"
 using namespace std;
 class Field
 {
@@ -37,6 +36,8 @@ public:
     }
 
 };
+
+
 
 
 #endif // FIELDS_HPP_INCLUDED

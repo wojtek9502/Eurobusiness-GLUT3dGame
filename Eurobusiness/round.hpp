@@ -95,6 +95,58 @@ void print_players_position(Player ptab[])
 }
 
 
+
+int calculate_tax(int player_number, Field pfields[])
+{
+    int n_fields = 0;
+    ///podatek obliczany na podstawie: liczba miast * 40
+    //zliczenie liczby miast
+
+    for(int i=0; i<40; i++)
+    {
+        if(player_number==pfields[i].owner)
+        {
+            n_fields++;
+        }
+    }
+
+    return 40*n_fields;
+
+}
+
+void check_enter_on_special_fields(Player ptab[], int player_number, Field pfields[])
+{
+    switch(ptab[player_number].im_on_field)
+    {
+        //parking platny
+        case 4:
+            {
+                cout << "Parking platny, placisz 400" << endl;
+                ptab[player_number].cash -= 400;
+            }break;
+
+        case 30: //idziesz do wiezienia
+            {
+                cout << "Idziesz do wiezienia" << endl;
+                ptab[player_number].im_on_field=9;
+                ptab[player_number].in_prison=true;
+                ptab[player_number].round_to_freedom=3;
+            }break;
+
+        case 38: //podatek od wzbogacenia
+            {
+               int to_pay = calculate_tax(player_number,pfields);
+               cout << "Podatek od wzbogacenia, placisz: " << to_pay << endl;
+               ptab[0].cash -= to_pay;
+            }break;
+
+        case 10: //wiezienie
+        {
+
+        }
+    }
+}
+
 void move_player(Player ptab[], Field pfields[], int player_number, int n_numbers_on_dice)
 {
     int next_field_calc = 0;
@@ -114,6 +166,37 @@ void move_player(Player ptab[], Field pfields[], int player_number, int n_number
         ptab[1].prev_field_nr = ptab[1].im_on_field;
         ptab[1].im_on_field =  next_field_calc;
    }
+}
+
+void move_player_on_field(Field pfields[], int field_nr, Player ptab[])
+{
+    if(ptab[0].is_my_turn==true)
+    {
+       ptab[0].position_x = pfields[field_nr].p1_position_x; //przesun na wspolrzedne w tym polu
+       ptab[0].position_z = pfields[field_nr].p1_position_z;
+       ptab[0].im_on_field =  field_nr;  ///zaktualizuj pole im_on_field gracza
+    }
+   else
+   {
+       ptab[1].position_x = pfields[field_nr].p2_position_x; //przesun na wspolrzedne w tym polu
+       ptab[1].position_z = pfields[field_nr].p2_position_z;
+       ptab[1].im_on_field =  field_nr;  ///zaktualizuj pole im_on_field gracza
+   }
+}
+
+void check_prison(Player ptab[], int player_number)
+{
+    if(ptab[player_number].in_prison==true && ptab[player_number].round_to_freedom!=0)
+    {
+        ptab[player_number].prev_field_nr=9;
+        ptab[player_number].im_on_field=9;
+        ptab[player_number].round_to_freedom -= 1;
+        cout << "Jestes w wiezieniu jeszcze przez " <<  ptab[player_number].round_to_freedom << " rund" << endl;
+    }
+    else
+    {
+        ptab[player_number].in_prison=false;
+    }
 }
 
 void next_round(Player ptab[], Field pfields[])
@@ -136,8 +219,19 @@ void next_round(Player ptab[], Field pfields[])
             //tura gracza1
             Dice d1;
             d1.throw_dice();
-            move_player(ptab, pfields, 0, d1.show_dice_result());
+            check_prison(ptab,0);
+
+            if(ptab[0].in_prison==false)  ///jak jest w wiezieniu to sie nie rusza
+            {
+                move_player(ptab, pfields, 0, d1.show_dice_result());
+            }
+            else
+            {
+                move_player_on_field(pfields,10,ptab);
+            }
+
             check_go_through_start(ptab, 0);
+            check_enter_on_special_fields(ptab, 0, pfields);
             check_field_owner(ptab, 0, pfields, ptab[0].im_on_field);
             print_player_info(d1, ptab, 0 , pfields, "kula");
             print_owned_field(0,pfields);
@@ -154,8 +248,19 @@ void next_round(Player ptab[], Field pfields[])
             ///tura gracza 2
              Dice d2;
              d2.throw_dice();
-             move_player(ptab, pfields, 1, d2.show_dice_result());
+
+             check_prison(ptab,1);
+             if(ptab[1].in_prison==false)  ///jak jest w wiezieniu to sie nie rusza
+            {
+                move_player(ptab, pfields, 1, d2.show_dice_result());
+            }
+            else
+            {
+                move_player_on_field(pfields, 10, ptab);
+            }
+
              check_go_through_start(ptab, 1);
+             check_enter_on_special_fields(ptab, 1, pfields);
              check_field_owner(ptab, 1, pfields, ptab[1].im_on_field);
              print_player_info(d2, ptab, 1, pfields, "kwadrat");
              print_owned_field(1,pfields);

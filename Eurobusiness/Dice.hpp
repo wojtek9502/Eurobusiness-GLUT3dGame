@@ -25,6 +25,9 @@ public:
     int show_dice_result()
     {
         return number;
+
+        //only for test. Uncomment return on top.
+        //return 1+rand()%2;
     }
 
 
