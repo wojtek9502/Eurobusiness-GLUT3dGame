@@ -22,6 +22,7 @@
 GLuint tex[1];	/* tekstura */
 
   GLfloat angle;	/* K¹t obrotu obiektów wokó³ œrodka sceny (animacja) */
+  bool is_sound=false;
 
 //@TODO
 //Dorobić pola na planszy.
@@ -302,6 +303,21 @@ void KeyFunc(unsigned char key, int x, int y) {
         buy(ptab,pfields);
     }
 
+    if(key=='m') //wylacz dzwiek
+    {
+        if(is_sound==true)
+        {
+             PlaySound(NULL, 0, 0);
+             is_sound=false; //dzieki temu bedzie mozna znow wlaczyc
+        }
+        else
+        {
+            PlaySound("sound.mp3", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
+            is_sound=true;
+        }
+
+    }
+
     if(key == 0x1B)		exit(0);
 }
 
@@ -331,7 +347,6 @@ int main(int argc, char *argv[]) {
 	/* Funkcja obs³uguj¹ca klawiaturê */
 	glutKeyboardFunc(KeyFunc);
 
-    PlaySound("sound.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
 
 	/* Ustawienia OpenGL */
 	setupScene();
