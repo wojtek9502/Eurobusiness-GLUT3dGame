@@ -312,7 +312,7 @@ void KeyFunc(unsigned char key, int x, int y) {
         }
         else
         {
-            PlaySound("sound.mp3", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
+            PlaySound("sound.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
             is_sound=true;
         }
 
