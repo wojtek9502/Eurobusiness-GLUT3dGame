@@ -10,10 +10,8 @@
 	<string>
 	<vector>
 
-976663372 c:\program files (x86)\codeblocks\mingw\include\gl\glut.h
-	<windows.h>
-	<GL/gl.h>
-	<GL/glu.h>
+1496674980 c:\program files (x86)\codeblocks\mingw\include\gl\glut.h
+	"freeglut_std.h"
 
 1301111162 c:\program files (x86)\codeblocks\mingw\include\windows.h
 	<winresrc.h>
@@ -330,4 +328,102 @@
 1515776808 c:\users\wojtek\documents\github\eurobusiness-glut3dgame\eurobusiness\pay.hpp
 	"Player.hpp"
 	"fields.hpp"
+
+1515077469 source:c:\users\koste\onedrive\informatyka\semestr 5\grafika komputerowa\projekt\eurobusiness-glut3dgame\eurobusiness\targa.cpp
+	<windows.h>
+	<stdlib.h>
+	<stdio.h>
+	<gl/gl.h>
+	<gl/glu.h>
+	<iostream>
+	"Targa.h"
+
+1515077469 c:\users\koste\onedrive\informatyka\semestr 5\grafika komputerowa\projekt\eurobusiness-glut3dgame\eurobusiness\targa.h
+
+1516493478 source:c:\users\koste\onedrive\informatyka\semestr 5\grafika komputerowa\projekt\eurobusiness-glut3dgame\eurobusiness\main.cpp
+	<stdlib.h>
+	<gl/gl.h>
+	<gl/glu.h>
+	<gl/glut.h>
+	"Player.hpp"
+	"round.hpp"
+	"fields.hpp"
+	<string>
+	"Targa.h"
+	"buying_mechanic.hpp"
+	<windows.h>
+	<mmsystem.h>
+	"project_path.hpp"
+
+1484755678 c:\program files (x86)\codeblocks\mingw\include\gl\freeglut_std.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1515848799 c:\users\koste\onedrive\informatyka\semestr 5\grafika komputerowa\projekt\eurobusiness-glut3dgame\eurobusiness\player.hpp
+	<string>
+	<iostream>
+	"fields.hpp"
+
+1515848799 c:\users\koste\onedrive\informatyka\semestr 5\grafika komputerowa\projekt\eurobusiness-glut3dgame\eurobusiness\fields.hpp
+	"Player.hpp"
+
+1516493891 c:\users\koste\onedrive\informatyka\semestr 5\grafika komputerowa\projekt\eurobusiness-glut3dgame\eurobusiness\round.hpp
+	<iostream>
+	"Dice.hpp"
+	<windows.h>
+	<vector>
+	"fields.hpp"
+	"buying_mechanic.hpp"
+	"pay.hpp"
+
+1515848799 c:\users\koste\onedrive\informatyka\semestr 5\grafika komputerowa\projekt\eurobusiness-glut3dgame\eurobusiness\dice.hpp
+	<ctime>
+	<iostream>
+	<windows.h>
+
+1516469567 c:\users\koste\onedrive\informatyka\semestr 5\grafika komputerowa\projekt\eurobusiness-glut3dgame\eurobusiness\buying_mechanic.hpp
+	"fields.hpp"
+
+1515848807 c:\users\koste\onedrive\informatyka\semestr 5\grafika komputerowa\projekt\eurobusiness-glut3dgame\eurobusiness\pay.hpp
+	"Player.hpp"
+	"fields.hpp"
+
+1516489421 c:\users\koste\onedrive\informatyka\semestr 5\grafika komputerowa\projekt\eurobusiness-glut3dgame\eurobusiness\project_path.hpp
+	<direct.h>
+	<unistd.h>
+	<errno.h>
+	<stdio.h>
+
+1341006772 c:\program files (x86)\codeblocks\mingw\include\direct.h
+	<_mingw.h>
+	<stddef.h>
+	<io.h>
+
+1341006774 c:\program files (x86)\codeblocks\mingw\include\io.h
+	<_mingw.h>
+	<sys/types.h>
+
+1341006776 c:\program files (x86)\codeblocks\mingw\include\unistd.h
+	<io.h>
+	<process.h>
+	<getopt.h>
+	<sys/types.h>
+
+1341006774 c:\program files (x86)\codeblocks\mingw\include\process.h
+	<_mingw.h>
+	<sys/types.h>
+	<stdint.h>
+
+1341006776 c:\program files (x86)\codeblocks\mingw\include\stdint.h
+	<stddef.h>
+
+1341006772 c:\program files (x86)\codeblocks\mingw\include\getopt.h
+	<_mingw.h>
+
+1341006772 c:\program files (x86)\codeblocks\mingw\include\errno.h
+	<_mingw.h>
 

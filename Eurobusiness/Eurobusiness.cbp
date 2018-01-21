@@ -54,6 +54,7 @@
 		<Unit filename="fields.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="pay.hpp" />
+		<Unit filename="project_path.hpp" />
 		<Unit filename="round.hpp" />
 		<Extensions>
 			<code_completion />

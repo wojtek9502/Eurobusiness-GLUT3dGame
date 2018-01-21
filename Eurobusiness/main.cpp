@@ -11,12 +11,21 @@
 #include "Targa.h"
 #include "buying_mechanic.hpp"
 #include <windows.h>
+#include <mmsystem.h>
+#include "project_path.hpp"
 
 
-#define ANIM_FPS 40	/* Docelowa liczba ramek animacji na sekundê */
+#define ANIM_FPS 60	/* Docelowa liczba ramek animacji na sekundê */
 #define WINDOW_SIZE_X 800
 #define WINDOW_SIZE_Y 600
 #define FIELD_N 40
+
+/// wymuszenie uzycia karty Nvidia lub AMD jesli to mozliwe na laptopach z Optimusem
+__declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;        /// Nvidia
+__declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;  /// AMD
+
+string path = "";
+int music_number = 0;
 
 /* Dane globalne (animacja) */
 GLuint tex[1];	/* tekstura */
@@ -87,7 +96,6 @@ GLfloat lightDif[] = {0.7, 0.7, 0.7, 1.0};
 GLfloat lightPos[] = {0, 300, 0.0, 1.0};  ///defaultowo pierwszy param na 100 drugi na 200
 GLfloat lightSpec[] = {1, 1, 1, 1};
 
-
 /* Funkcja ustawia parametry renderowania i oœwietlenie... */
 /* wywo³ywana na pocz¹tku programu */
 void setupScene(void) {
@@ -100,8 +108,8 @@ void setupScene(void) {
 
     /* Aktywacja każdej tekstury po kolei i ładowanie z plików TGA */
 	glBindTexture(GL_TEXTURE_2D, tex[0]);
-	LoadTGAMipmap("scene_tex.tga");   //PATH TO TEXTURE def: scene_tex.tga
 
+    LoadTGAMipmap(const_cast<char*>(project_path(path,"scene_tex.tga")));   //PATH TO TEXTURE def: scene_tex.tga
 
 	/* W³¹czenie oœwietlenia */
 	glEnable(GL_LIGHTING);
@@ -251,7 +259,34 @@ void RenderScene(void) {
 }
 
 
-
+void play_music()
+{
+            string music = "";
+            int tmp_music = music_number;
+            do
+            {
+                music_number = rand()%5;
+            } while(music_number == tmp_music);
+            switch(music_number)
+            {
+            case 0:
+                music = "sound.wav";
+                break;
+            case 1:
+                music = "reloaded.wav";
+                break;
+            case 2:
+                music = "take_on_me.wav";
+                break;
+            case 3:
+                music = "what_is_love.wav";
+                break;
+            case 4:
+                music = "sax_guy.wav";
+                break;
+            }
+            PlaySound(project_path(path,music), NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
+}
 
 
 /* Zmiana rozmiarów okna */
@@ -283,9 +318,15 @@ void KeyFunc(unsigned char key, int x, int y) {
    // cout << "Kat kamery gora dol= " << lookA << endl;
 
     //rotacja
-    if(key=='r')
+    if(key=='a')
     {
         angle-=4;
+        camera_move=true;
+        glutPostRedisplay();
+    }
+    if(key=='d')
+    {
+        angle+=4;
         camera_move=true;
         glutPostRedisplay();
     }
@@ -312,16 +353,21 @@ void KeyFunc(unsigned char key, int x, int y) {
         }
         else
         {
-            PlaySound("sound.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
+            play_music();
             is_sound=true;
         }
+    }
 
+    if(key=='k')
+    {
+        if(is_sound==true)
+        {
+            play_music();
+        }
     }
 
     if(key == 0x1B)		exit(0);
 }
-
-
 
 
 /* Funkcja zegarowa: */
@@ -333,6 +379,16 @@ void ZegarFun(int val) {
 
 /* Funkcja g³ówna */
 int main(int argc, char *argv[]) {
+
+    path = argv[0];
+    srand(time(NULL));
+    music_number = rand()%5;
+
+    system("cls");
+    cout << "Instrukcja: \nklawisze wciskac w oknie z plansza\n"
+    "ENTER - start gry/kolejna tura \nwsad - obracanie\n"
+    "t - kupowanie\nm - wlacz/wylacz muzyke \nk - zmien utwor" << endl;
+
 
 	glutInit(&argc, argv);
 	/* Przygotowanie okna */

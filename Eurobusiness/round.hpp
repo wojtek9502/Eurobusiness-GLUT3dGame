@@ -26,8 +26,8 @@ void check_go_through_start(Player ptab[], int player_number)
     //cout << "aktualne pole: " << ptab[0].im_on_field << " poprzednie pole: " << ptab[0].prev_field_nr;
     if(ptab[player_number].prev_field_nr > ptab[player_number].im_on_field)
     {
-        ptab[player_number].cash += 500;
-        cout << endl << "Otrzymujesz 500 za przejscie przez start" << endl << endl;
+        ptab[player_number].cash += 400;
+        cout << endl << "Otrzymujesz 400 za przejscie przez start" << endl << endl;
     }
 }
 
